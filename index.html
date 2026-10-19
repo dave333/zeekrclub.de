@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="sv">
+<html lang="de">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,75 +8,82 @@
 </head>
 <body>
 
-  <!-- Header med logotyp och navigering -->
+  <!-- Header med logotyp, navigering och språkväxlare -->
   <header class="site-header">
     <div class="logo">ZEEKR <span class="accent">CLUB</span></div>
     <nav class="main-nav">
-      <a href="#om">Om klubben</a>
-      <a href="#fordelar">Fördelar</a>
-      <a href="#regler">Regler</a>
+      <a href="#om" data-i18n="nav.about">Über den Club</a>
+      <a href="#fordelar" data-i18n="nav.benefits">Vorteile</a>
+      <a href="#regler" data-i18n="nav.rules">Regeln</a>
     </nav>
-    <a href="https://discord.gg/8UYRfZAgHB" class="btn btn-nav">Gå med på Discord</a>
+    <div class="header-actions">
+      <!-- Språkväxlare: byter allt data-i18n-innehåll via script.js -->
+      <div class="lang-switch">
+        <button type="button" class="lang-btn" data-lang="de">DE</button>
+        <button type="button" class="lang-btn" data-lang="en">EN</button>
+      </div>
+      <a href="https://discord.gg/8UYRfZAgHB" class="btn btn-nav" data-i18n="nav.discord">Auf Discord beitreten</a>
+    </div>
   </header>
 
   <!-- Hero-sektion, det första man ser -->
   <section class="hero">
-    <h1>Välkommen till <span class="accent">Zeekr Club</span></h1>
-    <p class="hero-text">
-      Den svenska communityn för Zeekr-ägare och -entusiaster.
-      Dela erfarenheter, få tips och häng med likasinnade på Discord.
+    <h1 data-i18n-html="hero.heading">Willkommen bei <span class="accent">Zeekr Club</span></h1>
+    <p class="hero-text" data-i18n="hero.text">
+      Die Community für Zeekr-Besitzer und -Enthusiasten.
+      Teile Erfahrungen, hol dir Tipps und triff Gleichgesinnte auf Discord.
     </p>
-    <a href="https://discord.gg/8UYRfZAgHB" class="btn btn-primary">Gå med i klubben</a>
+    <a href="https://discord.gg/8UYRfZAgHB" class="btn btn-primary" data-i18n="hero.cta">Der Community beitreten</a>
   </section>
 
   <!-- Om klubben -->
   <section id="om" class="section">
-    <h2>Om klubben</h2>
-    <p>
-      Zeekr Club är en community byggd av och för ägare och fans av Zeekr.
-      Här kan du ställa frågor, dela bilder på din bil, diskutera allt från
-      laddning och räckvidd till tillbehör och mjukvaruuppdateringar.
-      Oavsett om du redan äger en Zeekr eller bara är nyfiken är du välkommen.
+    <h2 data-i18n="about.heading">Über den Club</h2>
+    <p data-i18n="about.text">
+      Zeekr Club ist eine Community von und für Besitzer und Fans von Zeekr.
+      Hier kannst du Fragen stellen, Bilder deines Autos teilen und über alles
+      diskutieren – von Laden und Reichweite bis zu Zubehör und Software-Updates.
+      Egal ob du bereits einen Zeekr besitzt oder einfach neugierig bist, du bist willkommen.
     </p>
   </section>
 
   <!-- Fördelar / vad klubben erbjuder -->
   <section id="fordelar" class="section">
-    <h2>Vad du får som medlem</h2>
+    <h2 data-i18n="benefits.heading">Was du als Mitglied bekommst</h2>
     <div class="card-grid">
       <div class="card">
-        <h3>Gemenskap</h3>
-        <p>Prata med andra Zeekr-ägare, dela erfarenheter och få svar på dina frågor.</p>
+        <h3 data-i18n="benefits.card1.title">Gemeinschaft</h3>
+        <p data-i18n="benefits.card1.text">Tausche dich mit anderen Zeekr-Besitzern aus, teile Erfahrungen und erhalte Antworten auf deine Fragen.</p>
       </div>
       <div class="card">
-        <h3>Nyheter &amp; tips</h3>
-        <p>Håll dig uppdaterad om nya modeller, mjukvara och smarta tillbehör.</p>
+        <h3 data-i18n="benefits.card2.title">News &amp; Tipps</h3>
+        <p data-i18n="benefits.card2.text">Bleib auf dem Laufenden über neue Modelle, Software und praktisches Zubehör.</p>
       </div>
       <div class="card">
-        <h3>Träffar &amp; events</h3>
-        <p>Få koll på träffar, roadtrips och andra event som arrangeras av communityn.</p>
+        <h3 data-i18n="benefits.card3.title">Treffen &amp; Events</h3>
+        <p data-i18n="benefits.card3.text">Erfahre mehr über Treffen, Roadtrips und andere Events der Community.</p>
       </div>
     </div>
   </section>
 
   <!-- Regler -->
   <section id="regler" class="section">
-    <h2>Regler i korthet</h2>
+    <h2 data-i18n="rules.heading">Regeln auf einen Blick</h2>
     <ul class="rules-list">
-      <li>Var trevlig och respektfull mot andra medlemmar.</li>
-      <li>Ingen spam, reklam eller olagligt innehåll.</li>
-      <li>Håll diskussioner relevanta för rätt kanal.</li>
+      <li data-i18n="rules.item1">Sei freundlich und respektvoll gegenüber anderen Mitgliedern.</li>
+      <li data-i18n="rules.item2">Kein Spam, keine Werbung und keine illegalen Inhalte.</li>
+      <li data-i18n="rules.item3">Halte Diskussionen im passenden Kanal.</li>
     </ul>
   </section>
 
   <!-- Call to action längst ner -->
   <section class="cta">
-    <h2>Redo att bli medlem?</h2>
-    <a href="https://discord.gg/8UYRfZAgHB" class="btn btn-primary">Gå med på Discord</a>
+    <h2 data-i18n="cta.heading">Bereit, Mitglied zu werden?</h2>
+    <a href="https://discord.gg/8UYRfZAgHB" class="btn btn-primary" data-i18n="nav.discord">Auf Discord beitreten</a>
   </section>
 
   <footer class="site-footer">
-    <p>&copy; 2026 Zeekr Club. Inte officiellt anknuten till Zeekr.</p>
+    <p data-i18n="footer.text">&copy; 2026 Zeekr Club. Nicht offiziell mit Zeekr verbunden.</p>
   </footer>
 
   <script src="script.js"></script>
