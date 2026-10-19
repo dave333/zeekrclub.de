@@ -8,9 +8,9 @@ const translations = {
     "nav.rules": "Regeln",
     "nav.discord": "Auf Discord beitreten",
     "gallery.heading": "Galerie",
-    "gallery.slide1.alt": "Zeekr Club Deutschland – Zeekr kommt nach Deutschland",
-    "gallery.slide2": "Bild 2 folgt bald",
-    "gallery.slide3": "Bild 3 folgt bald",
+    "gallery.slide1.alt": "Willkommen in der Zeekr Community",
+    "gallery.slide2.alt": "Alle Informationen vor dem Autokauf",
+    "gallery.slide3.alt": "Diskutiere die Seriosität von Leasinggesellschaften",
     "gallery.prev": "Vorheriges Bild",
     "gallery.next": "Nächstes Bild",
     "hero.heading": 'Willkommen bei <span class="accent">Zeekr Club</span>',
@@ -41,9 +41,9 @@ const translations = {
     "nav.rules": "Rules",
     "nav.discord": "Join on Discord",
     "gallery.heading": "Gallery",
-    "gallery.slide1.alt": "Zeekr Club Germany – Zeekr is coming to Germany",
-    "gallery.slide2": "Image 2 coming soon",
-    "gallery.slide3": "Image 3 coming soon",
+    "gallery.slide1.alt": "Welcome to the Zeekr community",
+    "gallery.slide2.alt": "All the information before buying a car",
+    "gallery.slide3.alt": "Discuss the reliability of leasing companies",
     "gallery.prev": "Previous image",
     "gallery.next": "Next image",
     "hero.heading": 'Welcome to <span class="accent">Zeekr Club</span>',
@@ -112,6 +112,12 @@ function applyLanguage(lang) {
   document.querySelectorAll("[data-i18n-aria]").forEach((el) => {
     const key = el.getAttribute("data-i18n-aria");
     if (dict[key]) el.setAttribute("aria-label", dict[key]);
+  });
+
+  // Bildspelets bilder finns i en tysk och en engelsk version
+  document.querySelectorAll("[data-src-de]").forEach((img) => {
+    const src = lang === "en" ? img.getAttribute("data-src-en") : img.getAttribute("data-src-de");
+    if (src) img.src = src;
   });
 
   document.querySelectorAll(".lang-btn").forEach((btn) => {
