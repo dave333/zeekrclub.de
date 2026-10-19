@@ -7,10 +7,9 @@ const translations = {
     "nav.benefits": "Vorteile",
     "nav.rules": "Regeln",
     "nav.discord": "Auf Discord beitreten",
-    "gallery.heading": "Galerie",
-    "gallery.slide1.alt": "Willkommen in der Zeekr Community",
-    "gallery.slide2.alt": "Alle Informationen vor dem Autokauf",
-    "gallery.slide3.alt": "Diskutiere die Seriosität von Leasinggesellschaften",
+    "gallery.slide1.alt": "Willkommen in unserer Discord-Community",
+    "gallery.slide2.alt": "Gut informiert vor dem Kauf",
+    "gallery.slide3.alt": "Wissen, bei wem du least",
     "gallery.prev": "Vorheriges Bild",
     "gallery.next": "Nächstes Bild",
     "hero.heading": 'Willkommen bei <span class="accent">Zeekr Club</span>',
@@ -40,10 +39,9 @@ const translations = {
     "nav.benefits": "Benefits",
     "nav.rules": "Rules",
     "nav.discord": "Join on Discord",
-    "gallery.heading": "Gallery",
-    "gallery.slide1.alt": "Welcome to the Zeekr community",
-    "gallery.slide2.alt": "All the information before buying a car",
-    "gallery.slide3.alt": "Discuss the reliability of leasing companies",
+    "gallery.slide1.alt": "Welcome to our Discord community",
+    "gallery.slide2.alt": "Know what you need before you buy",
+    "gallery.slide3.alt": "Know who you're leasing from",
     "gallery.prev": "Previous image",
     "gallery.next": "Next image",
     "hero.heading": 'Welcome to <span class="accent">Zeekr Club</span>',
@@ -154,7 +152,7 @@ if (slideshow) {
 
   function startAutoplay() {
     stopAutoplay();
-    autoplayTimer = setInterval(() => showSlide(currentSlide + 1), 6000);
+    autoplayTimer = setInterval(() => showSlide(currentSlide + 1), 15000);
   }
 
   function stopAutoplay() {
