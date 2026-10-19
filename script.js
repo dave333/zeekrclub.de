@@ -30,6 +30,8 @@ const translations = {
     "rules.item2": "Kein Spam, keine Werbung und keine illegalen Inhalte.",
     "rules.item3": "Halte Diskussionen im passenden Kanal.",
     "cta.heading": "Bereit, Mitglied zu werden?",
+    "footer.facebookHeading": "Facebook-Gruppen",
+    "footer.generalGroup": "Zeekr (Allgemein)",
     "footer.text": "© 2026 Zeekr Club. Nicht offiziell mit Zeekr verbunden.",
   },
   en: {
@@ -61,6 +63,8 @@ const translations = {
     "rules.item2": "No spam, advertising, or illegal content.",
     "rules.item3": "Keep discussions relevant to the right channel.",
     "cta.heading": "Ready to join?",
+    "footer.facebookHeading": "Facebook groups",
+    "footer.generalGroup": "Zeekr (General)",
     "footer.text": "© 2026 Zeekr Club. Not officially affiliated with Zeekr.",
   },
 };
