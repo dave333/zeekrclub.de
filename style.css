@@ -123,17 +123,17 @@ h1, h2, h3 {
 /* ---------- Hero ---------- */
 .hero {
   text-align: center;
-  padding: 7rem 5% 6rem;
+  padding: 2.5rem 5% 1.5rem;
 }
 
 .hero h1 {
   font-size: clamp(2.2rem, 5vw, 3.5rem);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .hero-text {
   max-width: 560px;
-  margin: 0 auto 2.5rem;
+  margin: 0 auto 1.5rem;
   color: var(--text-muted);
   font-size: 1.1rem;
 }
@@ -142,18 +142,20 @@ h1, h2, h3 {
 .section {
   max-width: 900px;
   margin: 0 auto;
-  padding: 4rem 5%;
+  padding: 2.5rem 5%;
   text-align: center;
 }
 
 /* Galleri-sektionen får vara bredare för att rymma det större bildspelet */
 #galerie {
   max-width: 1400px;
+  padding-top: 1rem;
+  padding-bottom: 1.5rem;
 }
 
 .section h2 {
   font-size: 1.8rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .section p {
@@ -164,7 +166,7 @@ h1, h2, h3 {
 .slideshow {
   position: relative;
   max-width: 1300px;
-  margin: 2rem auto 0;
+  margin: 0 auto;
   aspect-ratio: 4 / 3;
   border-radius: 16px;
   overflow: hidden;
@@ -255,7 +257,7 @@ h1, h2, h3 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
-  margin-top: 2rem;
+  margin-top: 1.5rem;
   text-align: left;
 }
 
@@ -295,18 +297,18 @@ h1, h2, h3 {
 /* ---------- Call to action ---------- */
 .cta {
   text-align: center;
-  padding: 5rem 5%;
+  padding: 3rem 5%;
   background-color: var(--bg-elevated);
 }
 
 .cta h2 {
-  margin-bottom: 2rem;
+  margin-bottom: 1.25rem;
 }
 
 /* ---------- Footer ---------- */
 .site-footer {
   text-align: center;
-  padding: 2rem 5%;
+  padding: 1.5rem 5%;
   color: var(--text-muted);
   font-size: 0.85rem;
 }
