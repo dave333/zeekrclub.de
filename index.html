@@ -13,6 +13,7 @@
     <div class="logo">ZEEKR <span class="accent">CLUB</span></div>
     <nav class="main-nav">
       <a href="#om" data-i18n="nav.about">Über den Club</a>
+      <a href="#galerie" data-i18n="nav.gallery">Galerie</a>
       <a href="#fordelar" data-i18n="nav.benefits">Vorteile</a>
       <a href="#regler" data-i18n="nav.rules">Regeln</a>
     </nav>
@@ -34,6 +35,31 @@
       Teile Erfahrungen, hol dir Tipps und triff Gleichgesinnte auf Discord.
     </p>
     <a href="https://discord.gg/8UYRfZAgHB" class="btn btn-primary" data-i18n="hero.cta">Der Community beitreten</a>
+  </section>
+
+  <!-- Bildspel med 3 bilder -->
+  <section id="galerie" class="section">
+    <h2 data-i18n="gallery.heading">Galerie</h2>
+    <div class="slideshow">
+      <div class="slides">
+        <div class="slide active">
+          <img src="images/slide-1.jpg" data-i18n-alt="gallery.slide1.alt" alt="Zeekr Club Deutschland – Zeekr kommt nach Deutschland">
+        </div>
+        <div class="slide placeholder-slide">
+          <div class="placeholder-content" data-i18n="gallery.slide2">Bild 2 folgt bald</div>
+        </div>
+        <div class="slide placeholder-slide">
+          <div class="placeholder-content" data-i18n="gallery.slide3">Bild 3 folgt bald</div>
+        </div>
+      </div>
+      <button type="button" class="slide-arrow prev" data-i18n-aria="gallery.prev" aria-label="Vorheriges Bild">&#10094;</button>
+      <button type="button" class="slide-arrow next" data-i18n-aria="gallery.next" aria-label="Nächstes Bild">&#10095;</button>
+      <div class="slide-dots">
+        <button type="button" class="dot active" data-slide="0" aria-label="Bild 1"></button>
+        <button type="button" class="dot" data-slide="1" aria-label="Bild 2"></button>
+        <button type="button" class="dot" data-slide="2" aria-label="Bild 3"></button>
+      </div>
+    </div>
   </section>
 
   <!-- Om klubben -->

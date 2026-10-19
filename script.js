@@ -3,9 +3,16 @@
 const translations = {
   de: {
     "nav.about": "Über den Club",
+    "nav.gallery": "Galerie",
     "nav.benefits": "Vorteile",
     "nav.rules": "Regeln",
     "nav.discord": "Auf Discord beitreten",
+    "gallery.heading": "Galerie",
+    "gallery.slide1.alt": "Zeekr Club Deutschland – Zeekr kommt nach Deutschland",
+    "gallery.slide2": "Bild 2 folgt bald",
+    "gallery.slide3": "Bild 3 folgt bald",
+    "gallery.prev": "Vorheriges Bild",
+    "gallery.next": "Nächstes Bild",
     "hero.heading": 'Willkommen bei <span class="accent">Zeekr Club</span>',
     "hero.text": "Die Community für Zeekr-Besitzer und -Enthusiasten. Teile Erfahrungen, hol dir Tipps und triff Gleichgesinnte auf Discord.",
     "hero.cta": "Der Community beitreten",
@@ -27,9 +34,16 @@ const translations = {
   },
   en: {
     "nav.about": "About",
+    "nav.gallery": "Gallery",
     "nav.benefits": "Benefits",
     "nav.rules": "Rules",
     "nav.discord": "Join on Discord",
+    "gallery.heading": "Gallery",
+    "gallery.slide1.alt": "Zeekr Club Germany – Zeekr is coming to Germany",
+    "gallery.slide2": "Image 2 coming soon",
+    "gallery.slide3": "Image 3 coming soon",
+    "gallery.prev": "Previous image",
+    "gallery.next": "Next image",
     "hero.heading": 'Welcome to <span class="accent">Zeekr Club</span>',
     "hero.text": "The community for Zeekr owners and enthusiasts. Share experiences, get tips, and meet like-minded people on Discord.",
     "hero.cta": "Join the club",
@@ -86,6 +100,16 @@ function applyLanguage(lang) {
     if (dict[key]) el.innerHTML = dict[key];
   });
 
+  document.querySelectorAll("[data-i18n-alt]").forEach((el) => {
+    const key = el.getAttribute("data-i18n-alt");
+    if (dict[key]) el.setAttribute("alt", dict[key]);
+  });
+
+  document.querySelectorAll("[data-i18n-aria]").forEach((el) => {
+    const key = el.getAttribute("data-i18n-aria");
+    if (dict[key]) el.setAttribute("aria-label", dict[key]);
+  });
+
   document.querySelectorAll(".lang-btn").forEach((btn) => {
     btn.classList.toggle("active", btn.getAttribute("data-lang") === lang);
   });
@@ -100,6 +124,55 @@ document.querySelectorAll(".lang-btn").forEach((btn) => {
 });
 
 applyLanguage(getSavedLang() || DEFAULT_LANG);
+
+// ---------- Bildspel ----------
+const slideshow = document.querySelector(".slideshow");
+
+if (slideshow) {
+  const slides = slideshow.querySelectorAll(".slide");
+  const dots = slideshow.querySelectorAll(".dot");
+  const prevBtn = slideshow.querySelector(".slide-arrow.prev");
+  const nextBtn = slideshow.querySelector(".slide-arrow.next");
+  let currentSlide = 0;
+  let autoplayTimer = null;
+
+  function showSlide(index) {
+    currentSlide = (index + slides.length) % slides.length;
+    slides.forEach((slide, i) => slide.classList.toggle("active", i === currentSlide));
+    dots.forEach((dot, i) => dot.classList.toggle("active", i === currentSlide));
+  }
+
+  function startAutoplay() {
+    stopAutoplay();
+    autoplayTimer = setInterval(() => showSlide(currentSlide + 1), 6000);
+  }
+
+  function stopAutoplay() {
+    if (autoplayTimer) clearInterval(autoplayTimer);
+  }
+
+  prevBtn.addEventListener("click", () => {
+    showSlide(currentSlide - 1);
+    startAutoplay();
+  });
+
+  nextBtn.addEventListener("click", () => {
+    showSlide(currentSlide + 1);
+    startAutoplay();
+  });
+
+  dots.forEach((dot, i) => {
+    dot.addEventListener("click", () => {
+      showSlide(i);
+      startAutoplay();
+    });
+  });
+
+  slideshow.addEventListener("mouseenter", stopAutoplay);
+  slideshow.addEventListener("mouseleave", startAutoplay);
+
+  startAutoplay();
+}
 
 // Gör så att klick på nav-länkar scrollar mjukt till rätt sektion
 document.querySelectorAll('a[href^="#"]').forEach((link) => {
