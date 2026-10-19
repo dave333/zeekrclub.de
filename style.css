@@ -146,6 +146,11 @@ h1, h2, h3 {
   text-align: center;
 }
 
+/* Galleri-sektionen får vara bredare för att rymma det större bildspelet */
+#galerie {
+  max-width: 1400px;
+}
+
 .section h2 {
   font-size: 1.8rem;
   margin-bottom: 1.5rem;
@@ -158,7 +163,7 @@ h1, h2, h3 {
 /* ---------- Bildspel ---------- */
 .slideshow {
   position: relative;
-  max-width: 900px;
+  max-width: 1300px;
   margin: 2rem auto 0;
   aspect-ratio: 2560 / 640;
   border-radius: 16px;
