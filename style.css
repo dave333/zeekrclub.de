@@ -43,6 +43,8 @@ h1, h2, h3 {
   font-size: 1.3rem;
   font-weight: 700;
   letter-spacing: 0.08em;
+  color: var(--text);
+  text-decoration: none;
 }
 
 .main-nav {
@@ -339,6 +341,138 @@ h1, h2, h3 {
 
 .footer-links a:hover {
   color: var(--gold);
+}
+
+.footer-legal {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+  font-size: 0.8rem;
+}
+
+.footer-legal a {
+  color: var(--text-muted);
+  text-decoration: none;
+}
+
+.footer-legal a:hover {
+  color: var(--gold);
+}
+
+/* ---------- Juridiska sidor (Impressum, Datenschutz, Kontakt) ---------- */
+.legal-page {
+  max-width: 720px;
+  text-align: left;
+}
+
+.legal-page h1 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.legal-page h2 {
+  font-size: 1.15rem;
+  color: var(--gold);
+  margin: 2rem 0 0.5rem;
+}
+
+.legal-page p {
+  color: var(--text-muted);
+}
+
+.legal-page a {
+  color: var(--gold);
+}
+
+.legal-page .placeholder {
+  color: var(--gold);
+  font-style: italic;
+}
+
+/* ---------- Kontaktformulär ---------- */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-top: 1.5rem;
+}
+
+.contact-form label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 0.75rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+  font: inherit;
+  background-color: var(--bg-elevated);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  padding: 0.65rem 0.85rem;
+  color: var(--text);
+  resize: vertical;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: var(--gold);
+}
+
+.contact-form button {
+  margin-top: 1.25rem;
+  align-self: flex-start;
+  border: none;
+  cursor: pointer;
+}
+
+/* ---------- Cookie-/lagringshänvisning ---------- */
+.cookie-banner {
+  position: fixed;
+  left: 1rem;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 100;
+  max-width: 640px;
+  margin: 0 auto;
+  background-color: var(--bg-elevated);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  padding: 1.25rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+}
+
+.cookie-banner p {
+  flex: 1 1 260px;
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.cookie-banner-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-shrink: 0;
+}
+
+.cookie-banner-actions a {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.cookie-banner-actions .btn {
+  padding: 0.5rem 1.25rem;
+  font-size: 0.85rem;
+  border: none;
+  cursor: pointer;
 }
 
 /* ---------- Responsiv design för mobil ---------- */

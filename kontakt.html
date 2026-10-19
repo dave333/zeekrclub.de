@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kontakt – Zeekr Club</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <a href="index.html" class="logo">ZEEKR <span class="accent">CLUB</span></a>
+    <div class="header-actions">
+      <div class="lang-switch">
+        <button type="button" class="lang-btn" data-lang="de">DE</button>
+        <button type="button" class="lang-btn" data-lang="en">EN</button>
+      </div>
+      <a href="index.html" class="btn btn-nav" data-i18n="legal.back">Zurück zur Startseite</a>
+    </div>
+  </header>
+
+  <section class="section legal-page">
+    <h1 data-i18n="legal.contact.title">Kontakt</h1>
+    <p data-i18n="legal.contact.text">
+      Schreib uns eine Nachricht – dein E-Mail-Programm öffnet sich mit allem schon ausgefüllt.
+    </p>
+
+    <form id="contact-form" class="contact-form">
+      <label for="contact-name" data-i18n="legal.contact.nameLabel">Name</label>
+      <input type="text" id="contact-name" name="name" required>
+
+      <label for="contact-email" data-i18n="legal.contact.emailLabel">Deine E-Mail-Adresse</label>
+      <input type="email" id="contact-email" name="email" required>
+
+      <label for="contact-message" data-i18n="legal.contact.messageLabel">Nachricht</label>
+      <textarea id="contact-message" name="message" rows="5" required></textarea>
+
+      <button type="submit" class="btn btn-primary" data-i18n="legal.contact.submit">Senden</button>
+    </form>
+  </section>
+
+  <footer class="site-footer">
+    <p data-i18n="footer.text">&copy; 2026 Zeekr Club. Nicht offiziell mit Zeekr verbunden.</p>
+    <div class="footer-legal">
+      <a href="impressum.html" data-i18n="footer.impressum">Impressum</a>
+      <a href="datenschutz.html" data-i18n="footer.datenschutz">Datenschutz</a>
+      <a href="kontakt.html" data-i18n="footer.kontakt">Kontakt</a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
