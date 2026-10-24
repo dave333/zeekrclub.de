@@ -354,6 +354,25 @@ if (contactForm) {
   });
 }
 
+// ---------- Inloggningsstatus i headern (alla sidor) ----------
+const headerLoginLinks = document.querySelectorAll(".login-link");
+
+if (headerLoginLinks.length > 0) {
+  fetch("/api/me", { credentials: "same-origin" })
+    .then((res) => res.json())
+    .then((data) => {
+      if (data.loggedIn) {
+        headerLoginLinks.forEach((link) => {
+          link.textContent = data.username;
+          link.removeAttribute("data-i18n");
+        });
+      }
+    })
+    .catch(() => {
+      // Backend inte nåbar – lämna standardlänken som den är
+    });
+}
+
 // ---------- Inloggningsstatus (login.html) ----------
 const loginLoggedIn = document.getElementById("login-logged-in");
 const loginLoggedOut = document.getElementById("login-logged-out");
