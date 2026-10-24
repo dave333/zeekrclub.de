@@ -19,14 +19,33 @@
     </div>
   </header>
 
-  <!-- Platshållare: inga riktiga konton eller betalning finns ännu -->
   <section class="section login-placeholder">
     <h1 data-i18n="login.title">Mitgliederbereich</h1>
-    <p data-i18n="login.text">
-      Hier entsteht bald ein Mitgliederbereich mit exklusiven Dokumenten und Guides.
-      Die Anmeldung ist noch nicht verfügbar – schau bald wieder vorbei!
-    </p>
-    <a href="index.html" class="btn btn-primary" data-i18n="legal.back">Zurück zur Startseite</a>
+
+    <!-- Eingeloggt: wird von script.js gefüllt, wenn eine Sitzung erkannt wird -->
+    <div id="login-logged-in" class="login-logged-in" hidden>
+      <img id="login-avatar" class="login-avatar" alt="" hidden>
+      <p>
+        <span data-i18n="login.welcomePrefix">Angemeldet als</span>
+        <strong id="login-username"></strong>
+        <span data-i18n="login.welcomeSuffix">über Discord.</span>
+      </p>
+      <p class="login-note" data-i18n="login.text">
+        Hier entsteht bald ein Mitgliederbereich mit exklusiven Dokumenten und Guides.
+      </p>
+      <a href="/auth/logout" class="btn btn-nav" data-i18n="login.logout">Abmelden</a>
+    </div>
+
+    <!-- Ausgeloggt -->
+    <div id="login-logged-out">
+      <p data-i18n="login.text">
+        Hier entsteht bald ein Mitgliederbereich mit exklusiven Dokumenten und Guides.
+        Melde dich mit deinem Discord-Konto an, das du bereits vom Forum kennst.
+      </p>
+      <a href="/auth/discord/login" class="btn btn-primary" data-i18n="login.cta">Mit Discord anmelden</a>
+    </div>
+
+    <p><a href="index.html" class="btn btn-nav" data-i18n="legal.back">Zurück zur Startseite</a></p>
   </section>
 
   <footer class="site-footer">

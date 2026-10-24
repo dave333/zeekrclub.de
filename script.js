@@ -10,7 +10,11 @@ const translations = {
     "nav.discord": "Auf Discord beitreten",
     "nav.login": "Anmelden",
     "login.title": "Mitgliederbereich",
-    "login.text": "Hier entsteht bald ein Mitgliederbereich mit exklusiven Dokumenten und Guides. Die Anmeldung ist noch nicht verfügbar – schau bald wieder vorbei!",
+    "login.text": "Hier entsteht bald ein Mitgliederbereich mit exklusiven Dokumenten und Guides. Melde dich mit deinem Discord-Konto an, das du bereits vom Forum kennst.",
+    "login.welcomePrefix": "Angemeldet als",
+    "login.welcomeSuffix": "über Discord.",
+    "login.cta": "Mit Discord anmelden",
+    "login.logout": "Abmelden",
     "gallery.slide1.alt": "Willkommen in unserer Discord-Community",
     "gallery.slide2.alt": "Gut informiert vor dem Kauf",
     "gallery.slide3.alt": "Wissen, bei wem du least",
@@ -99,7 +103,11 @@ const translations = {
     "nav.discord": "Join on Discord",
     "nav.login": "Log in",
     "login.title": "Members area",
-    "login.text": "A members area with exclusive documents and guides is coming soon. Login isn't available yet – check back soon!",
+    "login.text": "A members area with exclusive documents and guides is coming soon. Log in with the Discord account you already use for the forum.",
+    "login.welcomePrefix": "Signed in as",
+    "login.welcomeSuffix": "via Discord.",
+    "login.cta": "Log in with Discord",
+    "login.logout": "Log out",
     "gallery.slide1.alt": "Welcome to our Discord community",
     "gallery.slide2.alt": "Know what you need before you buy",
     "gallery.slide3.alt": "Know who you're leasing from",
@@ -344,6 +352,30 @@ if (contactForm) {
 
     window.location.href = "mailto:nygdavid@gmail.com?subject=" + subject + "&body=" + body;
   });
+}
+
+// ---------- Inloggningsstatus (login.html) ----------
+const loginLoggedIn = document.getElementById("login-logged-in");
+const loginLoggedOut = document.getElementById("login-logged-out");
+
+if (loginLoggedIn && loginLoggedOut) {
+  fetch("/api/me", { credentials: "same-origin" })
+    .then((res) => res.json())
+    .then((data) => {
+      if (data.loggedIn) {
+        document.getElementById("login-username").textContent = data.username;
+        if (data.avatar) {
+          const avatarEl = document.getElementById("login-avatar");
+          avatarEl.src = data.avatar;
+          avatarEl.hidden = false;
+        }
+        loginLoggedIn.hidden = false;
+        loginLoggedOut.hidden = true;
+      }
+    })
+    .catch(() => {
+      // Backend inte nåbar – visa standardläget (utloggad)
+    });
 }
 
 // ---------- Senaste trådarna från forumet ----------
