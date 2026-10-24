@@ -4,6 +4,7 @@ const translations = {
   de: {
     "nav.about": "Über den Club",
     "nav.gallery": "Galerie",
+    "nav.forum": "Forum",
     "nav.benefits": "Vorteile",
     "nav.rules": "Regeln",
     "nav.discord": "Auf Discord beitreten",
@@ -31,6 +32,11 @@ const translations = {
     "rules.item2": "Kein Spam, keine Werbung und keine illegalen Inhalte.",
     "rules.item3": "Halte Diskussionen im passenden Kanal.",
     "cta.heading": "Bereit, Mitglied zu werden?",
+    "forum.heading": "Neueste Themen im Forum",
+    "forum.loading": "Lädt...",
+    "forum.error": "Themen konnten nicht geladen werden.",
+    "forum.cta": "Zum Forum",
+    "forum.replies": "Antworten",
     "footer.facebookHeading": "Facebook-Gruppen",
     "footer.generalGroup": "Zeekr (Allgemein)",
     "footer.text": "© 2026 Zeekr Club. Nicht offiziell mit Zeekr verbunden.",
@@ -70,6 +76,7 @@ const translations = {
   en: {
     "nav.about": "About",
     "nav.gallery": "Gallery",
+    "nav.forum": "Forum",
     "nav.benefits": "Benefits",
     "nav.rules": "Rules",
     "nav.discord": "Join on Discord",
@@ -97,6 +104,11 @@ const translations = {
     "rules.item2": "No spam, advertising, or illegal content.",
     "rules.item3": "Keep discussions relevant to the right channel.",
     "cta.heading": "Ready to join?",
+    "forum.heading": "Latest forum threads",
+    "forum.loading": "Loading...",
+    "forum.error": "Couldn't load threads.",
+    "forum.cta": "Go to forum",
+    "forum.replies": "replies",
     "footer.facebookHeading": "Facebook groups",
     "footer.generalGroup": "Zeekr (General)",
     "footer.text": "© 2026 Zeekr Club. Not officially affiliated with Zeekr.",
@@ -298,6 +310,59 @@ if (contactForm) {
 
     window.location.href = "mailto:nygdavid@gmail.com?subject=" + subject + "&body=" + body;
   });
+}
+
+// ---------- Senaste trådarna från forumet ----------
+const threadList = document.getElementById("thread-list");
+
+if (threadList) {
+  fetch("/forum-api/latest.json")
+    .then((res) => {
+      if (!res.ok) throw new Error("HTTP " + res.status);
+      return res.json();
+    })
+    .then((data) => {
+      const topics = (data.topic_list && data.topic_list.topics) || [];
+      threadList.innerHTML = "";
+
+      if (topics.length === 0) {
+        const li = document.createElement("li");
+        li.className = "thread-error";
+        li.textContent = (translations[getSavedLang() || DEFAULT_LANG] || translations[DEFAULT_LANG])["forum.error"];
+        threadList.appendChild(li);
+        return;
+      }
+
+      const dict = translations[getSavedLang() || DEFAULT_LANG] || translations[DEFAULT_LANG];
+
+      topics.slice(0, 10).forEach((topic) => {
+        const li = document.createElement("li");
+        const a = document.createElement("a");
+        a.href = `https://forum.zeekrclub.de/t/${topic.slug}/${topic.id}`;
+        a.target = "_blank";
+        a.rel = "noopener noreferrer";
+
+        const title = document.createElement("span");
+        title.textContent = topic.title;
+
+        const replies = document.createElement("span");
+        replies.className = "thread-replies";
+        replies.textContent = topic.posts_count - 1 + " " + dict["forum.replies"];
+
+        a.appendChild(title);
+        a.appendChild(replies);
+        li.appendChild(a);
+        threadList.appendChild(li);
+      });
+    })
+    .catch(() => {
+      const dict = translations[getSavedLang() || DEFAULT_LANG] || translations[DEFAULT_LANG];
+      threadList.innerHTML = "";
+      const li = document.createElement("li");
+      li.className = "thread-error";
+      li.textContent = dict["forum.error"];
+      threadList.appendChild(li);
+    });
 }
 
 // Gör så att klick på nav-länkar scrollar mjukt till rätt sektion
