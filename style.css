@@ -309,6 +309,11 @@ h1, h2, h3 {
   padding: 1.75rem;
 }
 
+.card-icon {
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
 .card h3 {
   color: var(--gold);
   margin-top: 0;
