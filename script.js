@@ -42,6 +42,10 @@ const translations = {
     "rules.item2": "Kein Spam, keine Werbung und keine illegalen Inhalte.",
     "rules.item3": "Halte Diskussionen im passenden Kanal.",
     "cta.heading": "Bereit, Mitglied zu werden?",
+    "categories.heading": "Kategorien im Forum",
+    "categories.loading": "Lädt...",
+    "categories.error": "Kategorien konnten nicht geladen werden.",
+    "categories.topics": "Themen",
     "forum.heading": "Neueste Themen im Forum",
     "forum.loading": "Lädt...",
     "forum.error": "Themen konnten nicht geladen werden.",
@@ -141,6 +145,10 @@ const translations = {
     "rules.item2": "No spam, advertising, or illegal content.",
     "rules.item3": "Keep discussions relevant to the right channel.",
     "cta.heading": "Ready to join?",
+    "categories.heading": "Forum categories",
+    "categories.loading": "Loading...",
+    "categories.error": "Couldn't load categories.",
+    "categories.topics": "topics",
     "forum.heading": "Latest forum threads",
     "forum.loading": "Loading...",
     "forum.error": "Couldn't load threads.",
@@ -406,6 +414,62 @@ if (loginLoggedIn && loginLoggedOut) {
     })
     .catch(() => {
       // Backend inte nåbar – visa standardläget (utloggad)
+    });
+}
+
+// ---------- Forumkategorier ----------
+const categoryList = document.getElementById("category-list");
+
+if (categoryList) {
+  fetch("/forum-api/categories.json")
+    .then((res) => {
+      if (!res.ok) throw new Error("HTTP " + res.status);
+      return res.json();
+    })
+    .then((data) => {
+      const categories = ((data.category_list && data.category_list.categories) || []).filter(
+        (c) => c.slug !== "site-feedback"
+      );
+      categoryList.innerHTML = "";
+
+      if (categories.length === 0) {
+        throw new Error("no categories");
+      }
+
+      const dict = translations[getSavedLang() || DEFAULT_LANG] || translations[DEFAULT_LANG];
+
+      categories.forEach((cat) => {
+        const li = document.createElement("li");
+        const a = document.createElement("a");
+        a.href = `https://zeekrforum.de/c/${cat.slug}/${cat.id}`;
+        a.target = "_blank";
+        a.rel = "noopener noreferrer";
+
+        const dot = document.createElement("span");
+        dot.className = "category-dot";
+        dot.style.backgroundColor = "#" + cat.color;
+
+        const name = document.createElement("span");
+        name.textContent = cat.name;
+
+        const count = document.createElement("span");
+        count.className = "category-count";
+        count.textContent = cat.topic_count + " " + dict["categories.topics"];
+
+        a.appendChild(dot);
+        a.appendChild(name);
+        a.appendChild(count);
+        li.appendChild(a);
+        categoryList.appendChild(li);
+      });
+    })
+    .catch(() => {
+      const dict = translations[getSavedLang() || DEFAULT_LANG] || translations[DEFAULT_LANG];
+      categoryList.innerHTML = "";
+      const li = document.createElement("li");
+      li.className = "thread-error";
+      li.textContent = dict["categories.error"];
+      categoryList.appendChild(li);
     });
 }
 
