@@ -340,6 +340,37 @@ h1, h2, h3 {
   color: var(--text-muted);
 }
 
+/* ---------- Umfrage ---------- */
+.survey-embed {
+  max-width: 760px;
+  margin: 2rem auto;
+  padding: 0.6rem;
+  border-radius: 24px;
+  background: linear-gradient(160deg, rgba(212, 175, 55, 0.12), rgba(212, 175, 55, 0.02));
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  box-shadow: 0 0 40px rgba(212, 175, 55, 0.08);
+}
+
+.survey-embed iframe {
+  display: block;
+  width: 100%;
+  /* Google stöder ingen auto-resize för inbäddade formulär, så vi ger iframen en generös fast höjd och låter den skrolla internt */
+  height: 1500px;
+  border: none;
+  border-radius: 18px;
+  background-color: #ffffff;
+}
+
+.survey-note {
+  max-width: 600px;
+  margin: 0 auto;
+  font-size: 0.9rem;
+}
+
+.survey-note a {
+  color: var(--gold);
+}
+
 /* ---------- Call to action ---------- */
 .cta {
   text-align: center;
@@ -713,5 +744,14 @@ h1, h2, h3 {
 
   .card-grid {
     grid-template-columns: 1fr;
+  }
+
+  .survey-embed {
+    margin: 1.5rem auto;
+    padding: 0.4rem;
+  }
+
+  .survey-embed iframe {
+    height: 2200px;
   }
 }
