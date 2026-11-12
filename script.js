@@ -435,7 +435,7 @@ if (threadList) {
       topics.slice(0, 10).forEach((topic) => {
         const li = document.createElement("li");
         const a = document.createElement("a");
-        a.href = `https://forum.zeekrclub.de/t/${topic.slug}/${topic.id}`;
+        a.href = `https://zeekrforum.de/t/${topic.slug}/${topic.id}`;
         a.target = "_blank";
         a.rel = "noopener noreferrer";
 
