@@ -284,58 +284,6 @@ h1, h2, h3 {
   }
 }
 
-.slide-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 2.25rem;
-  height: 2.25rem;
-  border-radius: 50%;
-  border: 1px solid var(--gold);
-  background-color: rgba(13, 13, 15, 0.6);
-  color: var(--gold);
-  font-size: 1rem;
-  line-height: 1;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.slide-arrow:hover {
-  background-color: rgba(212, 175, 55, 0.2);
-}
-
-.slide-arrow.prev {
-  left: 0.75rem;
-}
-
-.slide-arrow.next {
-  right: 0.75rem;
-}
-
-.slide-dots {
-  position: absolute;
-  bottom: 0.9rem;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 0.5rem;
-}
-
-.dot {
-  width: 0.55rem;
-  height: 0.55rem;
-  border-radius: 50%;
-  border: 1px solid var(--gold);
-  background: none;
-  padding: 0;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.dot.active {
-  background-color: var(--gold);
-}
-
 /* ---------- Kort-grid för fördelar ---------- */
 .card-grid {
   display: grid;

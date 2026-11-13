@@ -16,10 +16,6 @@ const translations = {
     "login.cta": "Mit Discord anmelden",
     "login.logout": "Abmelden",
     "gallery.slide1.alt": "Willkommen in unserer Discord-Community",
-    "gallery.slide2.alt": "Gut informiert vor dem Kauf",
-    "gallery.slide3.alt": "Wissen, bei wem du least",
-    "gallery.prev": "Vorheriges Bild",
-    "gallery.next": "Nächstes Bild",
     "hero.heading": 'Willkommen bei <span class="accent">Zeekr Club</span>',
     "hero.text": "Die Community für Zeekr-Besitzer und -Enthusiasten. Teile Erfahrungen, hol dir Tipps und triff Gleichgesinnte auf Discord.",
     "about.heading": "Über den Club",
@@ -111,10 +107,6 @@ const translations = {
     "login.cta": "Log in with Discord",
     "login.logout": "Log out",
     "gallery.slide1.alt": "Welcome to our Discord community",
-    "gallery.slide2.alt": "Know what you need before you buy",
-    "gallery.slide3.alt": "Know who you're leasing from",
-    "gallery.prev": "Previous image",
-    "gallery.next": "Next image",
     "hero.heading": 'Welcome to <span class="accent">Zeekr Club</span>',
     "hero.text": "The community for Zeekr owners and enthusiasts. Share experiences, get tips, and meet like-minded people on Discord.",
     "about.heading": "About the club",
@@ -259,56 +251,7 @@ document.querySelectorAll(".lang-btn").forEach((btn) => {
 
 applyLanguage(getSavedLang() || DEFAULT_LANG);
 
-// ---------- Bildspel ----------
-const slideshow = document.querySelector(".slideshow");
-
-if (slideshow) {
-  const slides = slideshow.querySelectorAll(".slide");
-  const dots = slideshow.querySelectorAll(".dot");
-  const prevBtn = slideshow.querySelector(".slide-arrow.prev");
-  const nextBtn = slideshow.querySelector(".slide-arrow.next");
-  let currentSlide = 0;
-  let autoplayTimer = null;
-
-  function showSlide(index) {
-    currentSlide = (index + slides.length) % slides.length;
-    slides.forEach((slide, i) => slide.classList.toggle("active", i === currentSlide));
-    dots.forEach((dot, i) => dot.classList.toggle("active", i === currentSlide));
-  }
-
-  function startAutoplay() {
-    stopAutoplay();
-    autoplayTimer = setInterval(() => showSlide(currentSlide + 1), 15000);
-  }
-
-  function stopAutoplay() {
-    if (autoplayTimer) clearInterval(autoplayTimer);
-  }
-
-  prevBtn.addEventListener("click", () => {
-    showSlide(currentSlide - 1);
-    startAutoplay();
-  });
-
-  nextBtn.addEventListener("click", () => {
-    showSlide(currentSlide + 1);
-    startAutoplay();
-  });
-
-  dots.forEach((dot, i) => {
-    dot.addEventListener("click", () => {
-      showSlide(i);
-      startAutoplay();
-    });
-  });
-
-  slideshow.addEventListener("mouseenter", stopAutoplay);
-  slideshow.addEventListener("mouseleave", startAutoplay);
-
-  startAutoplay();
-}
-
-// ---------- Mitgliedsvorteile (rotierende Vorteile im ersten Bildspiel-Slide) ----------
+// ---------- Mitgliedsvorteile (rotierende Vorteile im Bildspiel-Slide) ----------
 (function setupBenefits() {
   const overlay = document.querySelector(".benefits-overlay");
   if (!overlay) return;
