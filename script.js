@@ -333,23 +333,9 @@ if (slideshow) {
   const eyebrowEl = overlay.querySelector(".benefits-eyebrow");
   const titleEl = overlay.querySelector(".benefits-title");
   const descEl = overlay.querySelector(".benefits-desc");
-  const dotsEl = overlay.querySelector(".benefits-dots");
 
   let index = 0;
   let timer = null;
-
-  benefitsData.de.forEach((_, i) => {
-    const dot = document.createElement("button");
-    dot.type = "button";
-    dot.className = "benefits-dot";
-    dot.setAttribute("aria-label", "Vorteil " + (i + 1));
-    dot.addEventListener("click", () => {
-      index = i;
-      render();
-      restart();
-    });
-    dotsEl.appendChild(dot);
-  });
 
   function render() {
     const lang = document.documentElement.lang === "en" ? "en" : "de";
@@ -359,7 +345,6 @@ if (slideshow) {
     eyebrowEl.textContent = counterLabel;
     titleEl.textContent = title;
     descEl.textContent = desc;
-    [...dotsEl.children].forEach((d, i) => d.classList.toggle("active", i === index));
   }
 
   function next() {
