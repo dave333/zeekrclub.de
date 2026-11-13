@@ -15,7 +15,6 @@ const translations = {
     "login.welcomeSuffix": "über Discord.",
     "login.cta": "Mit Discord anmelden",
     "login.logout": "Abmelden",
-    "gallery.slide1.alt": "Willkommen in unserer Discord-Community",
     "hero.heading": 'Willkommen bei <span class="accent">Zeekr Club</span>',
     "hero.text": "Die Community für Zeekr-Besitzer und -Enthusiasten. Teile Erfahrungen, hol dir Tipps und triff Gleichgesinnte auf Discord.",
     "about.heading": "Über den Club",
@@ -106,7 +105,6 @@ const translations = {
     "login.welcomeSuffix": "via Discord.",
     "login.cta": "Log in with Discord",
     "login.logout": "Log out",
-    "gallery.slide1.alt": "Welcome to our Discord community",
     "hero.heading": 'Welcome to <span class="accent">Zeekr Club</span>',
     "hero.text": "The community for Zeekr owners and enthusiasts. Share experiences, get tips, and meet like-minded people on Discord.",
     "about.heading": "About the club",
@@ -250,66 +248,6 @@ document.querySelectorAll(".lang-btn").forEach((btn) => {
 });
 
 applyLanguage(getSavedLang() || DEFAULT_LANG);
-
-// ---------- Mitgliedsvorteile (rotierende Vorteile im Bildspiel-Slide) ----------
-(function setupBenefits() {
-  const overlay = document.querySelector(".benefits-overlay");
-  if (!overlay) return;
-
-  const benefitsData = {
-    de: [
-      ["Spare bei der Versicherung", "Wir verhandeln attraktive Versicherungsangebote speziell für Zeekr-Besitzer."],
-      ["Günstiger laden", "Entdecke mögliche Partnerrabatte für öffentliches und privates Laden."],
-      ["Angebote für Reifen & Felgen", "Profitiere von verhandelten Angeboten für Saisonreifen, Felgen und Zubehör."],
-      ["Service & Fahrzeugpflege", "Entdecke Mitgliedervorteile bei Aufbereitung, Lackschutz, Wartung und Pflege."],
-      ["Eine stärkere Community", "Vernetze dich mit anderen Besitzern und bring gemeinsames Feedback zu Zeekr ein."],
-    ],
-    en: [
-      ["Save on insurance", "We aim to negotiate attractive insurance offers tailored to Zeekr owners."],
-      ["Charge for less", "Discover potential partner discounts on public charging and home charging solutions."],
-      ["Deals on tires & wheels", "Enjoy access to negotiated offers on seasonal tires, wheels and accessories."],
-      ["Service & vehicle care", "Explore member deals on detailing, protection, maintenance and vehicle care."],
-      ["A stronger owner community", "Connect with fellow owners and help bring shared feedback to Zeekr."],
-    ],
-  };
-
-  const eyebrowEl = overlay.querySelector(".benefits-eyebrow");
-  const titleEl = overlay.querySelector(".benefits-title");
-  const descEl = overlay.querySelector(".benefits-desc");
-
-  let index = 0;
-  let timer = null;
-
-  function render() {
-    const lang = document.documentElement.lang === "en" ? "en" : "de";
-    const list = benefitsData[lang];
-    const [title, desc] = list[index];
-    const counterLabel = lang === "en" ? "Benefit " + (index + 1) + " of " + list.length : "Vorteil " + (index + 1) + " von " + list.length;
-    eyebrowEl.textContent = counterLabel;
-    titleEl.textContent = title;
-    descEl.textContent = desc;
-  }
-
-  function next() {
-    index = (index + 1) % benefitsData.de.length;
-    render();
-  }
-
-  function restart() {
-    if (timer) clearInterval(timer);
-    timer = setInterval(next, 4000);
-  }
-
-  render();
-  restart();
-
-  overlay.addEventListener("mouseenter", () => timer && clearInterval(timer));
-  overlay.addEventListener("mouseleave", restart);
-
-  document.querySelectorAll(".lang-btn").forEach((btn) => {
-    btn.addEventListener("click", () => setTimeout(render, 0));
-  });
-})();
 
 // ---------- Cookie-/lagringshänvisning ----------
 // Sidan använder inga tracking-cookies, bara nödvändig localStorage (språk, denna banner).
