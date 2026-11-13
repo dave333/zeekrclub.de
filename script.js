@@ -308,6 +308,81 @@ if (slideshow) {
   startAutoplay();
 }
 
+// ---------- Mitgliedsvorteile (rotierende Vorteile im ersten Bildspiel-Slide) ----------
+(function setupBenefits() {
+  const overlay = document.querySelector(".benefits-overlay");
+  if (!overlay) return;
+
+  const benefitsData = {
+    de: [
+      ["Spare bei der Versicherung", "Wir verhandeln attraktive Versicherungsangebote speziell für Zeekr-Besitzer."],
+      ["Günstiger laden", "Entdecke mögliche Partnerrabatte für öffentliches und privates Laden."],
+      ["Angebote für Reifen & Felgen", "Profitiere von verhandelten Angeboten für Saisonreifen, Felgen und Zubehör."],
+      ["Service & Fahrzeugpflege", "Entdecke Mitgliedervorteile bei Aufbereitung, Lackschutz, Wartung und Pflege."],
+      ["Eine stärkere Community", "Vernetze dich mit anderen Besitzern und bring gemeinsames Feedback zu Zeekr ein."],
+    ],
+    en: [
+      ["Save on insurance", "We aim to negotiate attractive insurance offers tailored to Zeekr owners."],
+      ["Charge for less", "Discover potential partner discounts on public charging and home charging solutions."],
+      ["Deals on tires & wheels", "Enjoy access to negotiated offers on seasonal tires, wheels and accessories."],
+      ["Service & vehicle care", "Explore member deals on detailing, protection, maintenance and vehicle care."],
+      ["A stronger owner community", "Connect with fellow owners and help bring shared feedback to Zeekr."],
+    ],
+  };
+
+  const eyebrowEl = overlay.querySelector(".benefits-eyebrow");
+  const titleEl = overlay.querySelector(".benefits-title");
+  const descEl = overlay.querySelector(".benefits-desc");
+  const dotsEl = overlay.querySelector(".benefits-dots");
+
+  let index = 0;
+  let timer = null;
+
+  benefitsData.de.forEach((_, i) => {
+    const dot = document.createElement("button");
+    dot.type = "button";
+    dot.className = "benefits-dot";
+    dot.setAttribute("aria-label", "Vorteil " + (i + 1));
+    dot.addEventListener("click", () => {
+      index = i;
+      render();
+      restart();
+    });
+    dotsEl.appendChild(dot);
+  });
+
+  function render() {
+    const lang = document.documentElement.lang === "en" ? "en" : "de";
+    const list = benefitsData[lang];
+    const [title, desc] = list[index];
+    const counterLabel = lang === "en" ? "Benefit " + (index + 1) + " of " + list.length : "Vorteil " + (index + 1) + " von " + list.length;
+    eyebrowEl.textContent = counterLabel;
+    titleEl.textContent = title;
+    descEl.textContent = desc;
+    [...dotsEl.children].forEach((d, i) => d.classList.toggle("active", i === index));
+  }
+
+  function next() {
+    index = (index + 1) % benefitsData.de.length;
+    render();
+  }
+
+  function restart() {
+    if (timer) clearInterval(timer);
+    timer = setInterval(next, 4000);
+  }
+
+  render();
+  restart();
+
+  overlay.addEventListener("mouseenter", () => timer && clearInterval(timer));
+  overlay.addEventListener("mouseleave", restart);
+
+  document.querySelectorAll(".lang-btn").forEach((btn) => {
+    btn.addEventListener("click", () => setTimeout(render, 0));
+  });
+})();
+
 // ---------- Cookie-/lagringshänvisning ----------
 // Sidan använder inga tracking-cookies, bara nödvändig localStorage (språk, denna banner).
 (function setupCookieBanner() {
