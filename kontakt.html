@@ -16,6 +16,20 @@
         <button type="button" class="lang-btn" data-lang="en">EN</button>
       </div>
       <a href="index.html" class="btn btn-nav" data-i18n="legal.back">Zurück zur Startseite</a>
+      <div class="info-menu">
+        <button type="button" class="info-menu-toggle" aria-haspopup="true" aria-expanded="false" data-i18n-aria="menu.toggle" aria-label="Menü öffnen">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+        <div class="info-menu-dropdown" hidden>
+          <a href="kontakt.html" data-i18n="footer.kontakt">Kontakt</a>
+          <a href="impressum.html" data-i18n="footer.impressum">Impressum</a>
+          <a href="datenschutz.html" data-i18n="footer.datenschutz">Datenschutz</a>
+          <a href="founding-members.html" data-i18n="footer.founding">Gründungsmitglieder</a>
+          <a href="login.html" data-i18n="login.title">Mitgliederbereich</a>
+        </div>
+      </div>
     </div>
   </header>
 
@@ -41,12 +55,6 @@
 
   <footer class="site-footer">
     <p data-i18n="footer.text">&copy; 2026 Zeekr Club. Nicht offiziell mit Zeekr verbunden.</p>
-    <div class="footer-legal">
-      <a href="impressum.html" data-i18n="footer.impressum">Impressum</a>
-      <a href="datenschutz.html" data-i18n="footer.datenschutz">Datenschutz</a>
-      <a href="kontakt.html" data-i18n="footer.kontakt">Kontakt</a>
-      <a href="founding-members.html" data-i18n="footer.founding">Gründungsmitglieder</a>
-    </div>
   </footer>
 
   <script src="script.js"></script>

@@ -9,6 +9,7 @@ const translations = {
     "nav.rules": "Regeln",
     "nav.discord": "Auf Discord beitreten",
     "nav.login": "Anmelden",
+    "menu.toggle": "Menü öffnen",
     "login.title": "Mitgliederbereich",
     "login.text": "Hier entsteht bald ein Mitgliederbereich mit exklusiven Dokumenten und Guides. Melde dich mit deinem Discord-Konto an, das du bereits vom Forum kennst.",
     "login.welcomePrefix": "Angemeldet als",
@@ -98,6 +99,7 @@ const translations = {
     "nav.rules": "Rules",
     "nav.discord": "Join on Discord",
     "nav.login": "Log in",
+    "menu.toggle": "Open menu",
     "login.title": "Members area",
     "login.text": "A members area with exclusive documents and guides is coming soon. Log in with the Discord account you already use for the forum.",
     "login.welcomePrefix": "Signed in as",
@@ -276,6 +278,42 @@ applyLanguage(getSavedLang() || DEFAULT_LANG);
       // localStorage kan vara blockerat, strunta i det då
     }
     banner.remove();
+  });
+})();
+
+// ---------- Infomeny (hamburgerknapp uppe till höger) ----------
+(function setupInfoMenu() {
+  const toggle = document.querySelector(".info-menu-toggle");
+  const dropdown = document.querySelector(".info-menu-dropdown");
+  if (!toggle || !dropdown) return;
+
+  function closeMenu() {
+    dropdown.hidden = true;
+    toggle.setAttribute("aria-expanded", "false");
+  }
+
+  function openMenu() {
+    dropdown.hidden = false;
+    toggle.setAttribute("aria-expanded", "true");
+  }
+
+  toggle.addEventListener("click", (event) => {
+    event.stopPropagation();
+    if (dropdown.hidden) {
+      openMenu();
+    } else {
+      closeMenu();
+    }
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!dropdown.hidden && !dropdown.contains(event.target) && event.target !== toggle) {
+      closeMenu();
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") closeMenu();
   });
 })();
 
