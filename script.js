@@ -3,10 +3,7 @@
 const translations = {
   de: {
     "nav.about": "Über den Club",
-    "nav.gallery": "Galerie",
     "nav.forum": "Forum",
-    "nav.benefits": "Themen",
-    "nav.rules": "Regeln",
     "nav.discord": "Auf Discord beitreten",
     "nav.login": "Anmelden",
     "menu.toggle": "Menü öffnen",
@@ -93,10 +90,7 @@ const translations = {
   },
   en: {
     "nav.about": "About",
-    "nav.gallery": "Gallery",
     "nav.forum": "Forum",
-    "nav.benefits": "Topics",
-    "nav.rules": "Rules",
     "nav.discord": "Join on Discord",
     "nav.login": "Log in",
     "menu.toggle": "Open menu",
