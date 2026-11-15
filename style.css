@@ -561,12 +561,46 @@ h1, h2, h3 {
   font-size: 1.05rem;
 }
 
+.founding-offer {
+  background-color: var(--bg-elevated);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+}
+
+.founding-offer h2 {
+  margin-top: 0;
+  font-size: 1.2rem;
+}
+
+.founding-offer p {
+  margin-bottom: 0;
+  color: var(--text-muted);
+}
+
+.founding-page h2 {
+  font-size: 1.3rem;
+  color: var(--gold);
+  margin: 2rem 0 1rem;
+}
+
+.founding-steps {
+  padding-left: 1.25rem;
+  color: var(--text-muted);
+}
+
+.founding-steps li {
+  padding: 0.35rem 0;
+}
+
 .founding-page p {
   color: var(--text-muted);
 }
 
-.founding-more-note {
-  font-size: 0.95rem;
+.founding-highlight {
+  color: var(--text);
+  font-weight: 600;
 }
 
 .founding-page .btn {
