@@ -288,38 +288,6 @@ h1, h2, h3 {
   display: block;
 }
 
-/* ---------- Kort-grid för fördelar ---------- */
-.card-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-  margin-top: 1.5rem;
-  text-align: left;
-}
-
-.card {
-  background-color: var(--bg-elevated);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 12px;
-  padding: 1.75rem;
-}
-
-.card-icon {
-  font-size: 1.5rem;
-  margin-bottom: 0.75rem;
-}
-
-.card h3 {
-  color: var(--gold);
-  margin-top: 0;
-  font-size: 1.1rem;
-}
-
-.card p {
-  margin-bottom: 0;
-  font-size: 0.95rem;
-}
-
 /* ---------- Regel-lista ---------- */
 .rules-list {
   list-style: none;
@@ -565,63 +533,10 @@ h1, h2, h3 {
   color: var(--gold);
 }
 
-.thread-list .thread-replies {
-  flex-shrink: 0;
-  color: var(--text-muted);
-  font-size: 0.85rem;
-}
-
 .thread-loading,
 .thread-error {
   color: var(--text-muted);
   padding: 0.9rem 0.25rem;
-}
-
-/* ---------- Forumkategorier ---------- */
-.category-list {
-  list-style: none;
-  padding: 0;
-  margin: 1.5rem 0 0;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.75rem;
-  max-width: 720px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.category-list a {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.55rem 1.1rem;
-  background-color: var(--bg-elevated);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 999px;
-  color: var(--text);
-  text-decoration: none;
-  font-size: 0.9rem;
-  font-weight: 600;
-  transition: border-color 0.2s ease, color 0.2s ease;
-}
-
-.category-list a:hover {
-  border-color: var(--gold);
-  color: var(--gold);
-}
-
-.category-dot {
-  width: 0.6rem;
-  height: 0.6rem;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-
-.category-count {
-  color: var(--text-muted);
-  font-weight: 400;
-  font-size: 0.8rem;
 }
 
 /* ---------- Gründungsmitglieder-sida ---------- */
@@ -670,9 +585,5 @@ h1, h2, h3 {
   .main-nav {
     gap: 1.2rem;
     justify-content: center;
-  }
-
-  .card-grid {
-    grid-template-columns: 1fr;
   }
 }

@@ -16,33 +16,15 @@ const translations = {
     "hero.text": "Die Community für Zeekr-Besitzer und -Enthusiasten. Teile Erfahrungen, hol dir Tipps und triff Gleichgesinnte auf Discord.",
     "about.heading": "Über den Club",
     "about.text": "Zeekr Club ist eine Community von und für Besitzer und Fans von Zeekr. Hier kannst du Fragen stellen, Bilder deines Autos teilen und über alles diskutieren – von Laden und Reichweite bis zu Zubehör und Software-Updates. Egal ob du bereits einen Zeekr besitzt oder einfach neugierig bist, du bist willkommen.",
-    "benefits.heading": "Worüber wir reden",
-    "benefits.card1.title": "Vergleich mit Audi, BMW & Mercedes",
-    "benefits.card1.text": "Wie schlägt sich Zeekr gegen die etablierte Konkurrenz?",
-    "benefits.card2.title": "Infotainment",
-    "benefits.card2.text": "Bildschirm, Apps und Bedienung im Alltag.",
-    "benefits.card3.title": "Leasingbedingungen",
-    "benefits.card3.text": "Erfahrungen, Preise und Verträge rund ums Leasing.",
-    "benefits.card4.title": "Software",
-    "benefits.card4.text": "Updates, Funktionen und bekannte Probleme.",
-    "benefits.card5.title": "Allgemeines",
-    "benefits.card5.text": "Alles andere rund um Zeekr, das sonst nirgendwo reinpasst.",
-    "benefits.card6.title": "Camping mit dem Zeekr :)",
-    "benefits.card6.text": "Übernachten, Camping-Modus und Roadtrips mit deinem Zeekr.",
     "rules.heading": "Regeln auf einen Blick",
     "rules.item1": "Sei freundlich und respektvoll gegenüber anderen Mitgliedern.",
     "rules.item2": "Kein Spam, keine Werbung und keine illegalen Inhalte.",
     "rules.item3": "Halte Diskussionen im passenden Kanal.",
     "cta.heading": "Bereit, Mitglied zu werden?",
-    "categories.heading": "Kategorien im Forum",
-    "categories.loading": "Lädt...",
-    "categories.error": "Kategorien konnten nicht geladen werden.",
-    "categories.topics": "Themen",
     "forum.heading": "Neueste Themen im Forum",
     "forum.loading": "Lädt...",
     "forum.error": "Themen konnten nicht geladen werden.",
     "forum.cta": "Zum Forum",
-    "forum.replies": "Antworten",
     "founding.eyebrow": "🚀 Werde eines unserer ersten 100 Gründungsmitglieder!",
     "founding.heading": "Werde Gründungsmitglied",
     "founding.lead": "Zeekrclub.de – eine unabhängige Community für Zeekr-Enthusiasten in ganz Europa. Egal ob du über den Kauf deines ersten Zeekr nachdenkst oder bereits einen fährst – Zeekrclub.de ist der Ort für Fragen, Erfahrungsaustausch, Technikdiskussionen und gegenseitiges Lernen.",
@@ -87,6 +69,7 @@ const translations = {
     "legal.contact.emailLabel": "Deine E-Mail-Adresse",
     "legal.contact.messageLabel": "Nachricht",
     "legal.contact.submit": "Senden",
+    "zeekrclub.placeholder": "Hier entsteht bald mehr Inhalt.",
   },
   en: {
     "nav.about": "About",
@@ -103,33 +86,15 @@ const translations = {
     "hero.text": "The community for Zeekr owners and enthusiasts. Share experiences, get tips, and meet like-minded people on Discord.",
     "about.heading": "About the club",
     "about.text": "Zeekr Club is a community built by and for Zeekr owners and fans. Here you can ask questions, share pictures of your car, and discuss everything from charging and range to accessories and software updates. Whether you already own a Zeekr or are just curious, you're welcome.",
-    "benefits.heading": "What we talk about",
-    "benefits.card1.title": "Compared to Audi, BMW & Mercedes",
-    "benefits.card1.text": "How does Zeekr stack up against the established competition?",
-    "benefits.card2.title": "Infotainment",
-    "benefits.card2.text": "Screen, apps, and everyday usability.",
-    "benefits.card3.title": "Leasing terms",
-    "benefits.card3.text": "Experiences, pricing, and contracts around leasing.",
-    "benefits.card4.title": "Software",
-    "benefits.card4.text": "Updates, features, and known issues.",
-    "benefits.card5.title": "General chat",
-    "benefits.card5.text": "Everything else Zeekr-related that doesn't fit anywhere else.",
-    "benefits.card6.title": "Camping with Zeekr :)",
-    "benefits.card6.text": "Overnighting, camp mode, and road trips with your Zeekr.",
     "rules.heading": "Rules at a glance",
     "rules.item1": "Be kind and respectful toward other members.",
     "rules.item2": "No spam, advertising, or illegal content.",
     "rules.item3": "Keep discussions relevant to the right channel.",
     "cta.heading": "Ready to join?",
-    "categories.heading": "Forum categories",
-    "categories.loading": "Loading...",
-    "categories.error": "Couldn't load categories.",
-    "categories.topics": "topics",
     "forum.heading": "Latest forum threads",
     "forum.loading": "Loading...",
     "forum.error": "Couldn't load threads.",
     "forum.cta": "Go to forum",
-    "forum.replies": "replies",
     "founding.eyebrow": "🚀 Become one of our first 100 Founding Members!",
     "founding.heading": "Become a Founding Member",
     "founding.lead": "Zeekrclub.de – an independent community for Zeekr enthusiasts across Europe. Whether you're considering buying your first Zeekr or already driving one, Zeekrclub.de is the place to ask questions, share experiences, discuss technology, and learn from others.",
@@ -174,6 +139,7 @@ const translations = {
     "legal.contact.emailLabel": "Your email address",
     "legal.contact.messageLabel": "Message",
     "legal.contact.submit": "Send",
+    "zeekrclub.placeholder": "More content is coming soon.",
   },
 };
 
@@ -372,62 +338,6 @@ if (loginLoggedIn && loginLoggedOut) {
     });
 }
 
-// ---------- Forumkategorier ----------
-const categoryList = document.getElementById("category-list");
-
-if (categoryList) {
-  fetch("/forum-api/categories.json")
-    .then((res) => {
-      if (!res.ok) throw new Error("HTTP " + res.status);
-      return res.json();
-    })
-    .then((data) => {
-      const categories = ((data.category_list && data.category_list.categories) || []).filter(
-        (c) => c.slug !== "site-feedback"
-      );
-      categoryList.innerHTML = "";
-
-      if (categories.length === 0) {
-        throw new Error("no categories");
-      }
-
-      const dict = translations[getSavedLang() || DEFAULT_LANG] || translations[DEFAULT_LANG];
-
-      categories.forEach((cat) => {
-        const li = document.createElement("li");
-        const a = document.createElement("a");
-        a.href = `https://zeekrforum.de/c/${cat.slug}/${cat.id}`;
-        a.target = "_blank";
-        a.rel = "noopener noreferrer";
-
-        const dot = document.createElement("span");
-        dot.className = "category-dot";
-        dot.style.backgroundColor = "#" + cat.color;
-
-        const name = document.createElement("span");
-        name.textContent = cat.name;
-
-        const count = document.createElement("span");
-        count.className = "category-count";
-        count.textContent = cat.topic_count + " " + dict["categories.topics"];
-
-        a.appendChild(dot);
-        a.appendChild(name);
-        a.appendChild(count);
-        li.appendChild(a);
-        categoryList.appendChild(li);
-      });
-    })
-    .catch(() => {
-      const dict = translations[getSavedLang() || DEFAULT_LANG] || translations[DEFAULT_LANG];
-      categoryList.innerHTML = "";
-      const li = document.createElement("li");
-      li.className = "thread-error";
-      li.textContent = dict["categories.error"];
-      categoryList.appendChild(li);
-    });
-}
-
 // ---------- Senaste trådarna från forumet ----------
 const threadList = document.getElementById("thread-list");
 
@@ -449,8 +359,6 @@ if (threadList) {
         return;
       }
 
-      const dict = translations[getSavedLang() || DEFAULT_LANG] || translations[DEFAULT_LANG];
-
       topics.slice(0, 10).forEach((topic) => {
         const li = document.createElement("li");
         const a = document.createElement("a");
@@ -461,12 +369,7 @@ if (threadList) {
         const title = document.createElement("span");
         title.textContent = topic.title;
 
-        const replies = document.createElement("span");
-        replies.className = "thread-replies";
-        replies.textContent = topic.posts_count - 1 + " " + dict["forum.replies"];
-
         a.appendChild(title);
-        a.appendChild(replies);
         li.appendChild(a);
         threadList.appendChild(li);
       });
