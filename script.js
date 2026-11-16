@@ -2,29 +2,65 @@
 // Nycklarna matchar data-i18n / data-i18n-html-attributen i index.html.
 const translations = {
   de: {
-    "nav.about": "Über den Club",
-    "nav.forum": "Forum",
-    "nav.discord": "Auf Discord beitreten",
-    "nav.login": "Anmelden",
     "menu.toggle": "Menü öffnen",
+    "nav.cta": "Kostenlos beitreten",
     "login.title": "Mitgliederbereich",
     "login.text": "Hier entsteht bald ein Mitgliederbereich mit exklusiven Dokumenten und Guides. Melde dich mit deinem Discord-Konto an, das du bereits vom Forum kennst.",
     "login.welcomePrefix": "Angemeldet als",
     "login.welcomeSuffix": "über Discord.",
     "login.cta": "Mit Discord anmelden",
     "login.logout": "Abmelden",
-    "hero.text": "Die Community für Zeekr-Besitzer und -Enthusiasten. Teile Erfahrungen, hol dir Tipps und triff Gleichgesinnte auf Discord.",
-    "about.heading": "Über den Club",
-    "about.text": "Zeekr Club ist eine Community von und für Besitzer und Fans von Zeekr. Hier kannst du Fragen stellen, Bilder deines Autos teilen und über alles diskutieren – von Laden und Reichweite bis zu Zubehör und Software-Updates. Egal ob du bereits einen Zeekr besitzt oder einfach neugierig bist, du bist willkommen.",
-    "rules.heading": "Regeln auf einen Blick",
-    "rules.item1": "Sei freundlich und respektvoll gegenüber anderen Mitgliedern.",
-    "rules.item2": "Kein Spam, keine Werbung und keine illegalen Inhalte.",
-    "rules.item3": "Halte Diskussionen im passenden Kanal.",
-    "cta.heading": "Bereit, Mitglied zu werden?",
-    "forum.heading": "Neueste Themen im Forum",
-    "forum.loading": "Lädt...",
-    "forum.error": "Themen konnten nicht geladen werden.",
-    "forum.cta": "Zum Forum",
+    "hero.eyebrow": "ZEEKR CLUB DEUTSCHLAND",
+    "hero.heading": "Dein Zeekr verdient mehr als nur eine Garage.",
+    "hero.sub": "Schließe dich der unabhängigen Community für Zeekr-Besitzer in Deutschland an – für bessere Deals, ehrliche Erfahrungen und Menschen, die dein Auto genauso gut finden wie du.",
+    "hero.cta": "Kostenlos beitreten →",
+    "hero.microcopy": "Keine Kreditkarte nötig. In unter einer Minute dabei.",
+    "trust.item1": "100 % unabhängig – nicht von Zeekr betrieben",
+    "trust.item2": "Von Besitzern, für Besitzer",
+    "trust.item3": "Aktive Community auf Discord & im Forum",
+    "benefits.heading": "Das bringt dir die Mitgliedschaft",
+    "benefits.card1.title": "Spare bei der Versicherung",
+    "benefits.card1.text": "Wir verhandeln mit Partnern, damit du als Zeekr-Fahrer bessere Konditionen bekommst.",
+    "benefits.card2.title": "Günstiger laden",
+    "benefits.card2.text": "Profitiere von Rabatten auf öffentliches und privates Laden – entwickelt für den Alltag.",
+    "benefits.card3.title": "Angebote für Reifen & Felgen",
+    "benefits.card3.text": "Saisonreifen, Felgen und Zubehör zu Konditionen, die sich lohnen.",
+    "benefits.card4.title": "Service & Fahrzeugpflege",
+    "benefits.card4.text": "Von Aufbereitung bis Wartung: Vorteile bei ausgewählten Partnern.",
+    "benefits.card5.title": "Eine starke Community",
+    "benefits.card5.text": "Ehrliche Antworten von echten Besitzern – keine Verkaufsgespräche.",
+    "steps.heading": "So wirst du Mitglied",
+    "steps.item1.title": "Werde kostenloses Mitglied",
+    "steps.item1.text": "Tritt in weniger als einer Minute unserem Discord oder Forum bei.",
+    "steps.item2.title": "Stell dich kurz vor",
+    "steps.item2.text": "Erzähl uns, welchen Zeekr du fährst oder dir wünschst.",
+    "steps.item3.title": "Genieße die Vorteile",
+    "steps.item3.text": "Zugang zu Deals, Wissen und einer Community, die dich wirklich versteht.",
+    "founding.text": "🚀 Nur noch wenige Plätze: Werde einer unserer ersten 100 Gründungsmitglieder und sichere dir kostenlosen, lebenslangen Zugang.",
+    "founding.bannerCta": "Mehr erfahren →",
+    "faq.heading": "Häufige Fragen",
+    "faq.q1": "Ist Zeekr Club Deutschland offiziell von Zeekr?",
+    "faq.a1": "Nein. Wir sind eine unabhängige, von Fans betriebene Community – das gibt uns die Freiheit, ehrlich zu sein.",
+    "faq.q2": "Kostet die Mitgliedschaft etwas?",
+    "faq.a2": "Die Basismitgliedschaft ist kostenlos. Gründungsmitglieder sichern sich zusätzlich lebenslangen Zugang zu allen zukünftigen Funktionen.",
+    "faq.q3": "Ich besitze noch keinen Zeekr – kann ich trotzdem beitreten?",
+    "faq.a3": "Ja! Alle, die sich für die Marke interessieren, sind herzlich willkommen.",
+    "faq.q4": "Wo findet die Community statt?",
+    "faq.a4": "Hauptsächlich auf Discord und in unserem Forum unter zeekrforum.de – beides kostenlos zugänglich.",
+    "faq.q5": "Was passiert mit meinen Daten, wenn ich beitrete?",
+    "faq.a5": 'Wir sammeln nur das Nötigste. Details findest du in unserer <a href="datenschutz.html">Datenschutzerklärung</a>.',
+    "final.heading": "Bereit, dazuzugehören?",
+    "final.sub": "Werde in unter einer Minute Teil der Community – kostenlos und unverbindlich.",
+    "final.form.name": "Name",
+    "final.form.namePlaceholder": "Max Mustermann",
+    "final.form.email": "E-Mail",
+    "final.form.emailPlaceholder": "max@beispiel.de",
+    "final.form.zip": "Postleitzahl",
+    "final.form.zipPlaceholder": "12345",
+    "final.form.model": "Welches Zeekr-Modell fährst oder interessiert dich? (optional)",
+    "final.form.modelPlaceholder": "z. B. Zeekr 7X",
+    "final.form.submit": "Jetzt Mitglied werden",
+    "final.discord": "Oder tritt direkt auf Discord bei →",
     "founding.eyebrow": "🚀 Werde eines unserer ersten 100 Gründungsmitglieder!",
     "founding.heading": "Werde Gründungsmitglied",
     "founding.lead1": "Eine unabhängige Community für Zeekr-Enthusiasten. Egal ob du über den Kauf deines ersten Zeekr nachdenkst oder bereits einen fährst – auf Zeekrclub.de sorgen wir für die besten Deals, Vorteile und Rabatte, damit dein Zeekr-Leben so gut wie möglich wird.",
@@ -41,9 +77,6 @@ const translations = {
     "founding.matters.highlight": "Nur 100 Plätze verfügbar – vergeben nach dem Prinzip „Wer zuerst kommt\": an Mitglieder, die alle drei Anforderungen erfüllen!",
     "founding.matters.closing": "Gemeinsam bauen wir Deutschlands engagierteste und unabhängigste Zeekr-Community auf.",
     "founding.cta": "Jetzt registrieren",
-    "founding.banner": "🚀 Werde eines unserer ersten 100 Gründungsmitglieder – kostenloser lebenslanger Zugang",
-    "footer.facebookHeading": "Facebook-Gruppen",
-    "footer.generalGroup": "Zeekr (Allgemein)",
     "footer.text": "© 2026 Zeekr Club. Nicht offiziell mit Zeekr verbunden.",
     "footer.impressum": "Impressum",
     "footer.datenschutz": "Datenschutz",
@@ -83,29 +116,65 @@ const translations = {
     "zeekrclub.placeholder": "Hier entsteht bald mehr Inhalt.",
   },
   en: {
-    "nav.about": "About",
-    "nav.forum": "Forum",
-    "nav.discord": "Join on Discord",
-    "nav.login": "Log in",
     "menu.toggle": "Open menu",
+    "nav.cta": "Join for free",
     "login.title": "Members area",
     "login.text": "A members area with exclusive documents and guides is coming soon. Log in with the Discord account you already use for the forum.",
     "login.welcomePrefix": "Signed in as",
     "login.welcomeSuffix": "via Discord.",
     "login.cta": "Log in with Discord",
     "login.logout": "Log out",
-    "hero.text": "The community for Zeekr owners and enthusiasts. Share experiences, get tips, and meet like-minded people on Discord.",
-    "about.heading": "About the club",
-    "about.text": "Zeekr Club is a community built by and for Zeekr owners and fans. Here you can ask questions, share pictures of your car, and discuss everything from charging and range to accessories and software updates. Whether you already own a Zeekr or are just curious, you're welcome.",
-    "rules.heading": "Rules at a glance",
-    "rules.item1": "Be kind and respectful toward other members.",
-    "rules.item2": "No spam, advertising, or illegal content.",
-    "rules.item3": "Keep discussions relevant to the right channel.",
-    "cta.heading": "Ready to join?",
-    "forum.heading": "Latest forum threads",
-    "forum.loading": "Loading...",
-    "forum.error": "Couldn't load threads.",
-    "forum.cta": "Go to forum",
+    "hero.eyebrow": "ZEEKR CLUB GERMANY",
+    "hero.heading": "Your Zeekr deserves more than just a garage.",
+    "hero.sub": "Join the independent community for Zeekr owners in Germany – for better deals, honest experiences, and people who love your car as much as you do.",
+    "hero.cta": "Join for free →",
+    "hero.microcopy": "No credit card needed. Takes less than a minute.",
+    "trust.item1": "100% independent – not run by Zeekr",
+    "trust.item2": "By owners, for owners",
+    "trust.item3": "Active community on Discord & our forum",
+    "benefits.heading": "What membership gets you",
+    "benefits.card1.title": "Save on insurance",
+    "benefits.card1.text": "We negotiate with partners to get Zeekr drivers better rates.",
+    "benefits.card2.title": "Charge for less",
+    "benefits.card2.text": "Enjoy discounts on public and home charging, built for everyday use.",
+    "benefits.card3.title": "Deals on tires & wheels",
+    "benefits.card3.text": "Seasonal tires, wheels and accessories at prices that make sense.",
+    "benefits.card4.title": "Service & vehicle care",
+    "benefits.card4.text": "From detailing to maintenance: perks with selected partners.",
+    "benefits.card5.title": "A strong community",
+    "benefits.card5.text": "Honest answers from real owners – no sales pitches.",
+    "steps.heading": "How to become a member",
+    "steps.item1.title": "Become a free member",
+    "steps.item1.text": "Join our Discord or forum in under a minute.",
+    "steps.item2.title": "Introduce yourself",
+    "steps.item2.text": "Tell us which Zeekr you drive or have your eye on.",
+    "steps.item3.title": "Enjoy the benefits",
+    "steps.item3.text": "Access deals, knowledge, and a community that truly gets it.",
+    "founding.text": "🚀 Only a few spots left: become one of our first 100 Founding Members and lock in free lifetime access.",
+    "founding.bannerCta": "Learn more →",
+    "faq.heading": "Frequently asked questions",
+    "faq.q1": "Is Zeekr Club Germany official?",
+    "faq.a1": "No. We're an independent, fan-run community – that's what lets us stay honest.",
+    "faq.q2": "Does membership cost anything?",
+    "faq.a2": "Basic membership is free. Founding Members additionally lock in lifetime access to everything we build next.",
+    "faq.q3": "I don't own a Zeekr yet – can I still join?",
+    "faq.a3": "Absolutely! Anyone interested in the brand is welcome.",
+    "faq.q4": "Where does the community happen?",
+    "faq.a4": "Mainly on Discord and our forum at zeekrforum.de – both free to join.",
+    "faq.q5": "What happens to my data if I join?",
+    "faq.a5": 'We only collect the essentials. Details are in our <a href="datenschutz.html">privacy policy</a>.',
+    "final.heading": "Ready to join?",
+    "final.sub": "Become part of the community in under a minute – free, no strings attached.",
+    "final.form.name": "Name",
+    "final.form.namePlaceholder": "Jane Doe",
+    "final.form.email": "Email",
+    "final.form.emailPlaceholder": "jane@example.com",
+    "final.form.zip": "Postal code",
+    "final.form.zipPlaceholder": "12345",
+    "final.form.model": "Which Zeekr model do you drive or have your eye on? (optional)",
+    "final.form.modelPlaceholder": "e.g. Zeekr 7X",
+    "final.form.submit": "Become a member",
+    "final.discord": "Or join directly on Discord →",
     "founding.eyebrow": "🚀 Become one of our first 100 Founding Members!",
     "founding.heading": "Become a Founding Member",
     "founding.lead1": "An independent community for Zeekr enthusiasts. Whether you're considering buying your first Zeekr or already driving one – on Zeekrclub.de we create the best deals, perks, and discounts to make your Zeekr life as good as it can be.",
@@ -122,9 +191,6 @@ const translations = {
     "founding.matters.highlight": "Only 100 spots available – awarded on a first-come, first-served basis to members who complete all three requirements!",
     "founding.matters.closing": "Together, we're building Germany's most engaged and independent Zeekr community.",
     "founding.cta": "Register now",
-    "founding.banner": "🚀 Become one of our first 100 Founding Members – free lifetime access",
-    "footer.facebookHeading": "Facebook groups",
-    "footer.generalGroup": "Zeekr (General)",
     "footer.text": "© 2026 Zeekr Club. Not officially affiliated with Zeekr.",
     "footer.impressum": "Legal notice",
     "footer.datenschutz": "Privacy policy",
@@ -208,6 +274,11 @@ function applyLanguage(lang) {
   document.querySelectorAll("[data-i18n-aria]").forEach((el) => {
     const key = el.getAttribute("data-i18n-aria");
     if (dict[key]) el.setAttribute("aria-label", dict[key]);
+  });
+
+  document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
+    const key = el.getAttribute("data-i18n-placeholder");
+    if (dict[key]) el.setAttribute("placeholder", dict[key]);
   });
 
   // Bildspelets bilder finns i en tysk och en engelsk version
@@ -360,50 +431,25 @@ if (loginLoggedIn && loginLoggedOut) {
     });
 }
 
-// ---------- Senaste trådarna från forumet ----------
-const threadList = document.getElementById("thread-list");
+// ---------- Leadformulär på startsidan (öppnar besökarens e-postprogram) ----------
+const leadForm = document.getElementById("lead-form");
 
-if (threadList) {
-  fetch("/forum-api/latest.json")
-    .then((res) => {
-      if (!res.ok) throw new Error("HTTP " + res.status);
-      return res.json();
-    })
-    .then((data) => {
-      const topics = (data.topic_list && data.topic_list.topics) || [];
-      threadList.innerHTML = "";
+if (leadForm) {
+  leadForm.addEventListener("submit", (event) => {
+    event.preventDefault();
 
-      if (topics.length === 0) {
-        const li = document.createElement("li");
-        li.className = "thread-error";
-        li.textContent = (translations[getSavedLang() || DEFAULT_LANG] || translations[DEFAULT_LANG])["forum.error"];
-        threadList.appendChild(li);
-        return;
-      }
+    const name = leadForm.name.value.trim();
+    const email = leadForm.email.value.trim();
+    const zip = leadForm.zip.value.trim();
+    const model = leadForm.model.value.trim();
 
-      topics.slice(0, 10).forEach((topic) => {
-        const li = document.createElement("li");
-        const a = document.createElement("a");
-        a.href = `https://zeekrforum.de/t/${topic.slug}/${topic.id}`;
-        a.target = "_blank";
-        a.rel = "noopener noreferrer";
+    const subject = encodeURIComponent("Neues Mitglied – Zeekr Club");
+    const bodyLines = ["Name: " + name, "E-Mail: " + email, "PLZ: " + zip];
+    if (model) bodyLines.push("Zeekr-Modell: " + model);
+    const body = encodeURIComponent(bodyLines.join("\n"));
 
-        const title = document.createElement("span");
-        title.textContent = topic.title;
-
-        a.appendChild(title);
-        li.appendChild(a);
-        threadList.appendChild(li);
-      });
-    })
-    .catch(() => {
-      const dict = translations[getSavedLang() || DEFAULT_LANG] || translations[DEFAULT_LANG];
-      threadList.innerHTML = "";
-      const li = document.createElement("li");
-      li.className = "thread-error";
-      li.textContent = dict["forum.error"];
-      threadList.appendChild(li);
-    });
+    window.location.href = "mailto:nygdavid@gmail.com?subject=" + subject + "&body=" + body;
+  });
 }
 
 // Gör så att klick på nav-länkar scrollar mjukt till rätt sektion
