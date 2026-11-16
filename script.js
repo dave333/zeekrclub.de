@@ -62,7 +62,7 @@ const translations = {
     "final.form.model": "Welches Zeekr-Modell fährst oder interessiert dich? (optional)",
     "final.form.modelPlaceholder": "z. B. Zeekr 7X",
     "final.form.submit": "Jetzt Mitglied werden",
-    "final.discord": "Oder tritt direkt auf Discord bei →",
+    "final.afterSubmit": "Nach dem Absenden wirst du direkt zu unserem Discord weitergeleitet.",
     "founding.eyebrow": "🚀 Werde eines unserer ersten 100 Gründungsmitglieder!",
     "founding.heading": "Werde Gründungsmitglied",
     "founding.lead1": "Eine unabhängige Community für Zeekr-Enthusiasten. Egal ob du über den Kauf deines ersten Zeekr nachdenkst oder bereits einen fährst – auf Zeekrclub.de sorgen wir für die besten Deals, Vorteile und Rabatte, damit dein Zeekr-Leben so gut wie möglich wird.",
@@ -178,7 +178,7 @@ const translations = {
     "final.form.model": "Which Zeekr model do you drive or have your eye on? (optional)",
     "final.form.modelPlaceholder": "e.g. Zeekr 7X",
     "final.form.submit": "Become a member",
-    "final.discord": "Or join directly on Discord →",
+    "final.afterSubmit": "After submitting, you'll be forwarded straight to our Discord.",
     "founding.eyebrow": "🚀 Become one of our first 100 Founding Members!",
     "founding.heading": "Become a Founding Member",
     "founding.lead1": "An independent community for Zeekr enthusiasts. Whether you're considering buying your first Zeekr or already driving one – on Zeekrclub.de we create the best deals, perks, and discounts to make your Zeekr life as good as it can be.",
@@ -452,6 +452,9 @@ if (leadForm) {
     if (model) bodyLines.push("Zeekr-Modell: " + model);
     const body = encodeURIComponent(bodyLines.join("\n"));
 
+    // Öppnar Discord-inbjudan i en ny flik och mejlutkastet i samma flik,
+    // så besökaren faktiskt kommer in i communityn efter att ha lämnat sina uppgifter.
+    window.open("https://discord.gg/8UYRfZAgHB", "_blank", "noopener,noreferrer");
     window.location.href = "mailto:nygdavid@gmail.com?subject=" + subject + "&body=" + body;
   });
 }

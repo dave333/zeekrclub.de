@@ -446,17 +446,11 @@ html {
   cursor: pointer;
 }
 
-.t-discord-link {
-  display: block;
+.t-discord-note {
   text-align: center;
   margin-top: 1.25rem;
   color: var(--text-muted);
-  text-decoration: none;
-  font-size: 0.9rem;
-}
-
-.t-discord-link:hover {
-  color: var(--gold);
+  font-size: 0.85rem;
 }
 
 /* ---------- Generella sektioner ---------- */
