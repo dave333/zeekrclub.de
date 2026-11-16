@@ -48,6 +48,8 @@ const translations = {
     "final.form.namePlaceholder": "Max Mustermann",
     "final.form.email": "E-Mail",
     "final.form.emailPlaceholder": "max@beispiel.de",
+    "final.form.zip": "Postleitzahl",
+    "final.form.zipPlaceholder": "12345",
     "final.form.model": "Welches Zeekr-Modell fährst oder interessiert dich? (optional)",
     "final.form.modelPlaceholder": "z. B. Zeekr 7X",
     "final.form.submit": "Jetzt Mitglied werden",
@@ -104,6 +106,8 @@ const translations = {
     "final.form.namePlaceholder": "Jane Doe",
     "final.form.email": "Email",
     "final.form.emailPlaceholder": "jane@example.com",
+    "final.form.zip": "Postal code",
+    "final.form.zipPlaceholder": "12345",
     "final.form.model": "Which Zeekr model do you drive or have your eye on? (optional)",
     "final.form.modelPlaceholder": "e.g. Zeekr 7X",
     "final.form.submit": "Become a member",
@@ -177,10 +181,11 @@ if (leadForm) {
 
     const name = leadForm.name.value.trim();
     const email = leadForm.email.value.trim();
+    const zip = leadForm.zip.value.trim();
     const model = leadForm.model.value.trim();
 
     const subject = encodeURIComponent("Neues Mitglied – Zeekr Club (Testseite)");
-    const bodyLines = ["Name: " + name, "E-Mail: " + email];
+    const bodyLines = ["Name: " + name, "E-Mail: " + email, "PLZ: " + zip];
     if (model) bodyLines.push("Zeekr-Modell: " + model);
     const body = encodeURIComponent(bodyLines.join("\n"));
 
