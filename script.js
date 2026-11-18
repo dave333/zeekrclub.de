@@ -3,7 +3,6 @@
 const translations = {
   de: {
     "menu.toggle": "Menü öffnen",
-    "nav.cta": "Kostenlos beitreten",
     "login.title": "Mitgliederbereich",
     "login.text": "Hier entsteht bald ein Mitgliederbereich mit exklusiven Dokumenten und Guides. Melde dich mit deinem Discord-Konto an, das du bereits vom Forum kennst.",
     "login.welcomePrefix": "Angemeldet als",
@@ -11,9 +10,10 @@ const translations = {
     "login.cta": "Mit Discord anmelden",
     "login.logout": "Abmelden",
     "hero.eyebrow": "ZEEKR CLUB DEUTSCHLAND",
+    "hero.audience.owners": "Für Besitzer",
+    "hero.audience.interested": "Für Interessierte",
     "hero.heading": "Dein Zeekr verdient mehr als nur eine Garage.",
     "hero.sub": "Schließe dich der unabhängigen Community für Zeekr-Besitzer in Deutschland an – für bessere Deals, ehrliche Erfahrungen und Menschen, die dein Auto genauso gut finden wie du.",
-    "hero.cta": "Kostenlos beitreten →",
     "hero.microcopy": "Keine Kreditkarte nötig. In unter einer Minute dabei.",
     "trust.item1": "100 % unabhängig – nicht von Zeekr betrieben",
     "trust.item2": "Von Besitzern, für Besitzer",
@@ -127,7 +127,6 @@ const translations = {
   },
   en: {
     "menu.toggle": "Open menu",
-    "nav.cta": "Join for free",
     "login.title": "Members area",
     "login.text": "A members area with exclusive documents and guides is coming soon. Log in with the Discord account you already use for the forum.",
     "login.welcomePrefix": "Signed in as",
@@ -135,9 +134,10 @@ const translations = {
     "login.cta": "Log in with Discord",
     "login.logout": "Log out",
     "hero.eyebrow": "ZEEKR CLUB GERMANY",
+    "hero.audience.owners": "For owners",
+    "hero.audience.interested": "For those interested",
     "hero.heading": "Your Zeekr deserves more than just a garage.",
     "hero.sub": "Join the independent community for Zeekr owners in Germany – for better deals, honest experiences, and people who love your car as much as you do.",
-    "hero.cta": "Join for free →",
     "hero.microcopy": "No credit card needed. Takes less than a minute.",
     "trust.item1": "100% independent – not run by Zeekr",
     "trust.item2": "By owners, for owners",
@@ -456,8 +456,7 @@ if (loginLoggedIn && loginLoggedOut) {
   const intro = document.getElementById("hero-intro");
   const wizard = document.getElementById("hero-wizard");
   const success = document.getElementById("hero-success");
-  const startBtn = document.getElementById("hero-start-btn");
-  if (!intro || !wizard || !success || !startBtn) return;
+  if (!wizard || !success) return;
 
   const steps = Array.from(wizard.querySelectorAll(".hero-wizard-step"));
   const progressEl = document.getElementById("hero-wizard-progress");
@@ -477,26 +476,13 @@ if (loginLoggedIn && loginLoggedOut) {
     steps.forEach((step) => {
       step.hidden = Number(step.getAttribute("data-step")) !== n;
     });
+    // Rubrik/text syns bara tillsammans med steg 1, för att hålla senare steg fokuserade
+    if (intro) intro.hidden = n !== 1;
     backBtn.hidden = n === 1;
     nextBtn.hidden = n === totalSteps;
     submitBtn.hidden = n !== totalSteps;
     updateProgress();
   }
-
-  function startWizard() {
-    intro.hidden = true;
-    success.hidden = true;
-    wizard.hidden = false;
-    currentStep = 1;
-    showStep(currentStep);
-  }
-
-  startBtn.addEventListener("click", startWizard);
-
-  // Andra länkar som pekar på #anmelden (header-knappen, mitgliedschaft.html) startar formuläret direkt
-  document.querySelectorAll('a[href="#anmelden"], a[href$="#anmelden"]').forEach((link) => {
-    link.addEventListener("click", startWizard);
-  });
 
   nextBtn.addEventListener("click", () => {
     const currentInput = steps[currentStep - 1].querySelector("input");
@@ -536,6 +522,7 @@ if (loginLoggedIn && loginLoggedOut) {
     window.location.href = "mailto:nygdavid@gmail.com?subject=" + subject + "&body=" + body;
 
     wizard.hidden = true;
+    if (intro) intro.hidden = true;
     success.hidden = false;
   });
 
@@ -545,10 +532,7 @@ if (loginLoggedIn && loginLoggedOut) {
     });
   });
 
-  // Kommer besökaren direkt från en "Jetzt Mitglied werden"-länk (t.ex. mitgliedschaft.html) startas formuläret direkt
-  if (window.location.hash === "#anmelden") {
-    startWizard();
-  }
+  showStep(currentStep);
 })();
 
 // Gör så att klick på nav-länkar scrollar mjukt till rätt sektion

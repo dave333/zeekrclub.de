@@ -16,7 +16,6 @@
         <button type="button" class="lang-btn" data-lang="de">DE</button>
         <button type="button" class="lang-btn" data-lang="en">EN</button>
       </div>
-      <a href="#anmelden" class="btn btn-primary" data-i18n="nav.cta">Kostenlos beitreten</a>
       <div class="info-menu">
         <button type="button" class="info-menu-toggle" aria-haspopup="true" aria-expanded="false" data-i18n-aria="menu.toggle" aria-label="Menü öffnen">
           <span class="hamburger-line"></span>
@@ -43,18 +42,19 @@
       <!-- Startvy -->
       <div class="hero-intro" id="hero-intro">
         <p class="t-eyebrow" data-i18n="hero.eyebrow">ZEEKR CLUB DEUTSCHLAND</p>
+        <div class="hero-audience">
+          <span class="hero-audience-badge">🚗 <span data-i18n="hero.audience.owners">Für Besitzer</span></span>
+          <span class="hero-audience-badge">👀 <span data-i18n="hero.audience.interested">Für Interessierte</span></span>
+        </div>
         <h1 data-i18n="hero.heading">Dein Zeekr verdient mehr als nur eine Garage.</h1>
         <p class="t-hero-sub" data-i18n="hero.sub">
           Schließe dich der unabhängigen Community für Zeekr-Besitzer in Deutschland an – für
           bessere Deals, ehrliche Erfahrungen und Menschen, die dein Auto genauso gut finden wie du.
         </p>
-        <button type="button" class="btn btn-primary t-btn-lg" id="hero-start-btn" data-i18n="hero.cta">Kostenlos beitreten →</button>
-        <p class="t-microcopy" data-i18n="hero.microcopy">Keine Kreditkarte nötig. In unter einer Minute dabei.</p>
-        <a href="mitgliedschaft.html" class="hero-learn-more" data-i18n="hero.learnMore">Mehr über die Mitgliedschaft erfahren →</a>
       </div>
 
-      <!-- Stegformulär (dolt från start) -->
-      <form class="t-form hero-wizard" id="hero-wizard" hidden>
+      <!-- Stegformulär: steg 1 syns direkt, inget extra klick behövs -->
+      <form class="t-form hero-wizard" id="hero-wizard">
         <p class="hero-wizard-progress" id="hero-wizard-progress">Schritt 1 von 4</p>
 
         <div class="hero-wizard-step" data-step="1">
@@ -80,6 +80,9 @@
           <button type="submit" class="btn btn-primary" id="hero-wizard-submit" data-i18n="final.form.submit" hidden>Jetzt Mitglied werden</button>
         </div>
       </form>
+
+      <p class="t-microcopy" data-i18n="hero.microcopy">Keine Kreditkarte nötig. In unter einer Minute dabei.</p>
+      <a href="mitgliedschaft.html" class="hero-learn-more" data-i18n="hero.learnMore">Mehr über die Mitgliedschaft erfahren →</a>
 
       <!-- Bekräftelse (dold från start) -->
       <div class="hero-success" id="hero-success" hidden>
