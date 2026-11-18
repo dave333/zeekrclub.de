@@ -25,6 +25,7 @@
         </button>
         <div class="info-menu-dropdown" hidden>
           <a href="login.html" data-i18n="login.title">Mitgliederbereich</a>
+          <a href="mitgliedschaft.html" data-i18n="footer.membership">Mitgliedschaft</a>
           <a href="founding-members.html" data-i18n="footer.founding">Gründungsmitglieder</a>
           <a href="impressum.html" data-i18n="footer.impressum">Impressum</a>
           <a href="datenschutz.html" data-i18n="footer.datenschutz">Datenschutz</a>
@@ -35,153 +36,57 @@
     </div>
   </header>
 
-  <!-- Hero: löfte + underrubrik + CTA, med bakgrundsbild för premiumkänsla -->
-  <section class="t-hero">
+  <!-- Hero: löfte + underrubrik, som förvandlas till ett stegvist anmälningsformulär i samma ruta -->
+  <section id="anmelden" class="t-hero">
     <div class="t-hero-inner">
-      <p class="t-eyebrow" data-i18n="hero.eyebrow">ZEEKR CLUB DEUTSCHLAND</p>
-      <h1 data-i18n="hero.heading">Dein Zeekr verdient mehr als nur eine Garage.</h1>
-      <p class="t-hero-sub" data-i18n="hero.sub">
-        Schließe dich der unabhängigen Community für Zeekr-Besitzer in Deutschland an – für
-        bessere Deals, ehrliche Erfahrungen und Menschen, die dein Auto genauso gut finden wie du.
-      </p>
-      <a href="#anmelden" class="btn btn-primary t-btn-lg" data-i18n="hero.cta">Kostenlos beitreten →</a>
-      <p class="t-microcopy" data-i18n="hero.microcopy">Keine Kreditkarte nötig. In unter einer Minute dabei.</p>
+
+      <!-- Startvy -->
+      <div class="hero-intro" id="hero-intro">
+        <p class="t-eyebrow" data-i18n="hero.eyebrow">ZEEKR CLUB DEUTSCHLAND</p>
+        <h1 data-i18n="hero.heading">Dein Zeekr verdient mehr als nur eine Garage.</h1>
+        <p class="t-hero-sub" data-i18n="hero.sub">
+          Schließe dich der unabhängigen Community für Zeekr-Besitzer in Deutschland an – für
+          bessere Deals, ehrliche Erfahrungen und Menschen, die dein Auto genauso gut finden wie du.
+        </p>
+        <button type="button" class="btn btn-primary t-btn-lg" id="hero-start-btn" data-i18n="hero.cta">Kostenlos beitreten →</button>
+        <p class="t-microcopy" data-i18n="hero.microcopy">Keine Kreditkarte nötig. In unter einer Minute dabei.</p>
+        <a href="mitgliedschaft.html" class="hero-learn-more" data-i18n="hero.learnMore">Mehr über die Mitgliedschaft erfahren →</a>
+      </div>
+
+      <!-- Stegformulär (dolt från start) -->
+      <form class="t-form hero-wizard" id="hero-wizard" hidden>
+        <p class="hero-wizard-progress" id="hero-wizard-progress">Schritt 1 von 4</p>
+
+        <div class="hero-wizard-step" data-step="1">
+          <label for="wiz-name" data-i18n="final.form.name">Name</label>
+          <input type="text" id="wiz-name" name="name" placeholder="Max Mustermann" data-i18n-placeholder="final.form.namePlaceholder" required>
+        </div>
+        <div class="hero-wizard-step" data-step="2" hidden>
+          <label for="wiz-email" data-i18n="final.form.email">E-Mail</label>
+          <input type="email" id="wiz-email" name="email" placeholder="max@beispiel.de" data-i18n-placeholder="final.form.emailPlaceholder" required>
+        </div>
+        <div class="hero-wizard-step" data-step="3" hidden>
+          <label for="wiz-zip" data-i18n="final.form.zip">Postleitzahl</label>
+          <input type="text" id="wiz-zip" name="zip" inputmode="numeric" pattern="\d{5}" maxlength="5" placeholder="12345" data-i18n-placeholder="final.form.zipPlaceholder" required>
+        </div>
+        <div class="hero-wizard-step" data-step="4" hidden>
+          <label for="wiz-model" data-i18n="final.form.model">Welches Zeekr-Modell fährst oder interessiert dich? (optional)</label>
+          <input type="text" id="wiz-model" name="model" placeholder="z. B. Zeekr 7X" data-i18n-placeholder="final.form.modelPlaceholder">
+        </div>
+
+        <div class="hero-wizard-nav">
+          <button type="button" class="btn btn-nav" id="hero-wizard-back" data-i18n="wizard.back" hidden>Zurück</button>
+          <button type="button" class="btn btn-primary" id="hero-wizard-next" data-i18n="wizard.next">Weiter</button>
+          <button type="submit" class="btn btn-primary" id="hero-wizard-submit" data-i18n="final.form.submit" hidden>Jetzt Mitglied werden</button>
+        </div>
+      </form>
+
+      <!-- Bekräftelse (dold från start) -->
+      <div class="hero-success" id="hero-success" hidden>
+        <p data-i18n="wizard.success">Danke! Wir leiten dich gerade zu unserem Discord weiter.</p>
+      </div>
+
     </div>
-  </section>
-
-  <!-- Förtroende-rad: tre korta, konkreta badges -->
-  <section class="t-trust">
-    <div class="t-trust-item">
-      <span class="t-trust-icon">🔒</span>
-      <span data-i18n="trust.item1">100&nbsp;% unabhängig – nicht von Zeekr betrieben</span>
-    </div>
-    <div class="t-trust-item">
-      <span class="t-trust-icon">🤝</span>
-      <span data-i18n="trust.item2">Von Besitzern, für Besitzer</span>
-    </div>
-    <div class="t-trust-item">
-      <span class="t-trust-icon">💬</span>
-      <span data-i18n="trust.item3">Aktive Community auf Discord &amp; im Forum</span>
-    </div>
-  </section>
-
-  <!-- Fördelar -->
-  <section class="t-section">
-    <h2 data-i18n="benefits.heading">Das bringt dir die Mitgliedschaft</h2>
-    <div class="t-benefit-grid">
-      <div class="t-benefit-card">
-        <div class="t-benefit-icon">🛡️</div>
-        <h3 data-i18n="benefits.card1.title">Spare bei der Versicherung</h3>
-        <p data-i18n="benefits.card1.text">Wir verhandeln mit Partnern, damit du als Zeekr-Fahrer bessere Konditionen bekommst.</p>
-      </div>
-      <div class="t-benefit-card">
-        <div class="t-benefit-icon">⚡</div>
-        <h3 data-i18n="benefits.card2.title">Günstiger laden</h3>
-        <p data-i18n="benefits.card2.text">Profitiere von Rabatten auf öffentliches und privates Laden – entwickelt für den Alltag.</p>
-      </div>
-      <div class="t-benefit-card">
-        <div class="t-benefit-icon">🛞</div>
-        <h3 data-i18n="benefits.card3.title">Angebote für Reifen &amp; Felgen</h3>
-        <p data-i18n="benefits.card3.text">Saisonreifen, Felgen und Zubehör zu Konditionen, die sich lohnen.</p>
-      </div>
-      <div class="t-benefit-card">
-        <div class="t-benefit-icon">🧽</div>
-        <h3 data-i18n="benefits.card4.title">Service &amp; Fahrzeugpflege</h3>
-        <p data-i18n="benefits.card4.text">Von Aufbereitung bis Wartung: Vorteile bei ausgewählten Partnern.</p>
-      </div>
-      <div class="t-benefit-card">
-        <div class="t-benefit-icon">⭐</div>
-        <h3 data-i18n="benefits.card5.title">Eine starke Community</h3>
-        <p data-i18n="benefits.card5.text">Ehrliche Antworten von echten Besitzern – keine Verkaufsgespräche.</p>
-      </div>
-      <div class="t-benefit-card">
-        <div class="t-benefit-icon">🚧</div>
-        <h3 data-i18n="benefits.card6.title">Start 2027</h3>
-        <p data-i18n="benefits.card6.text">Wir befinden uns im Aufbau: Bis zum offiziellen Launch 2027 verhandeln wir Partnerschaften und bereiten alles vor, damit du von Anfang an profitierst.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Så funkar det -->
-  <section class="t-section t-section-alt">
-    <h2 data-i18n="steps.heading">So wirst du Mitglied</h2>
-    <div class="t-steps">
-      <div class="t-step">
-        <div class="t-step-number">1</div>
-        <h3 data-i18n="steps.item1.title">Werde kostenloses Mitglied</h3>
-        <p data-i18n="steps.item1.text">Tritt in weniger als einer Minute unserem Discord oder Forum bei.</p>
-      </div>
-      <div class="t-step">
-        <div class="t-step-number">2</div>
-        <h3 data-i18n="steps.item2.title">Stell dich kurz vor</h3>
-        <p data-i18n="steps.item2.text">Erzähl uns, welchen Zeekr du fährst oder dir wünschst.</p>
-      </div>
-      <div class="t-step">
-        <div class="t-step-number">3</div>
-        <h3 data-i18n="steps.item3.title">Genieße die Vorteile</h3>
-        <p data-i18n="steps.item3.text">Zugang zu Deals, Wissen und einer Community, die dich wirklich versteht.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Brådska: grundarmedlem-erbjudande -->
-  <section class="t-founding">
-    <p data-i18n="founding.text">
-      🚀 Nur noch wenige Plätze: Werde einer unserer ersten 100 Gründungsmitglieder und sichere
-      dir kostenlosen, lebenslangen Zugang.
-    </p>
-    <a href="founding-members.html" class="t-founding-link" data-i18n="founding.bannerCta">Mehr erfahren →</a>
-  </section>
-
-  <!-- FAQ -->
-  <section class="t-section">
-    <h2 data-i18n="faq.heading">Häufige Fragen</h2>
-    <div class="t-faq">
-      <details class="t-faq-item">
-        <summary data-i18n="faq.q1">Ist Zeekr Club Deutschland offiziell von Zeekr?</summary>
-        <p data-i18n="faq.a1">Nein. Wir sind eine unabhängige, von Fans betriebene Community – das gibt uns die Freiheit, ehrlich zu sein.</p>
-      </details>
-      <details class="t-faq-item">
-        <summary data-i18n="faq.q2">Kostet die Mitgliedschaft etwas?</summary>
-        <p data-i18n="faq.a2">Die Basismitgliedschaft ist kostenlos. Gründungsmitglieder sichern sich zusätzlich lebenslangen Zugang zu allen zukünftigen Funktionen.</p>
-      </details>
-      <details class="t-faq-item">
-        <summary data-i18n="faq.q3">Ich besitze noch keinen Zeekr – kann ich trotzdem beitreten?</summary>
-        <p data-i18n="faq.a3">Ja! Alle, die sich für die Marke interessieren, sind herzlich willkommen.</p>
-      </details>
-      <details class="t-faq-item">
-        <summary data-i18n="faq.q4">Wo findet die Community statt?</summary>
-        <p data-i18n="faq.a4">Hauptsächlich auf Discord und in unserem Forum unter zeekrforum.de – beides kostenlos zugänglich.</p>
-      </details>
-      <details class="t-faq-item">
-        <summary data-i18n="faq.q5">Was passiert mit meinen Daten, wenn ich beitrete?</summary>
-        <p data-i18n-html="faq.a5">Wir sammeln nur das Nötigste. Details findest du in unserer <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
-      </details>
-    </div>
-  </section>
-
-  <!-- Sista CTA + kort formulär -->
-  <section id="anmelden" class="t-section t-final">
-    <h2 data-i18n="final.heading">Bereit, dazuzugehören?</h2>
-    <p data-i18n="final.sub">Werde in unter einer Minute Teil der Community – kostenlos und unverbindlich.</p>
-
-    <form class="t-form" id="lead-form">
-      <label for="lead-name" data-i18n="final.form.name">Name</label>
-      <input type="text" id="lead-name" name="name" placeholder="Max Mustermann" data-i18n-placeholder="final.form.namePlaceholder" required>
-
-      <label for="lead-email" data-i18n="final.form.email">E-Mail</label>
-      <input type="email" id="lead-email" name="email" placeholder="max@beispiel.de" data-i18n-placeholder="final.form.emailPlaceholder" required>
-
-      <label for="lead-zip" data-i18n="final.form.zip">Postleitzahl</label>
-      <input type="text" id="lead-zip" name="zip" inputmode="numeric" pattern="\d{5}" maxlength="5" placeholder="12345" data-i18n-placeholder="final.form.zipPlaceholder" required>
-
-      <label for="lead-model" data-i18n="final.form.model">Welches Zeekr-Modell fährst oder interessiert dich? (optional)</label>
-      <input type="text" id="lead-model" name="model" placeholder="z. B. Zeekr 7X" data-i18n-placeholder="final.form.modelPlaceholder">
-
-      <button type="submit" class="btn btn-primary t-btn-lg" data-i18n="final.form.submit">Jetzt Mitglied werden</button>
-    </form>
-
-    <p class="t-discord-note" data-i18n="final.afterSubmit">Nach dem Absenden wirst du direkt zu unserem Discord weitergeleitet.</p>
   </section>
 
   <footer class="site-footer">

@@ -62,7 +62,14 @@ const translations = {
     "final.form.model": "Welches Zeekr-Modell fährst oder interessiert dich? (optional)",
     "final.form.modelPlaceholder": "z. B. Zeekr 7X",
     "final.form.submit": "Jetzt Mitglied werden",
-    "final.afterSubmit": "Nach dem Absenden wirst du direkt zu unserem Discord weitergeleitet.",
+    "hero.learnMore": "Mehr über die Mitgliedschaft erfahren →",
+    "wizard.back": "Zurück",
+    "wizard.next": "Weiter",
+    "wizard.stepPrefix": "Schritt",
+    "wizard.stepOf": "von",
+    "wizard.success": "Danke! Wir leiten dich gerade zu unserem Discord weiter.",
+    "membership.title": "Mitgliedschaft",
+    "membership.sub": "Alles, was du über die Mitgliedschaft wissen musst.",
     "founding.eyebrow": "🚀 Werde eines unserer ersten 100 Gründungsmitglieder!",
     "founding.heading": "Werde Gründungsmitglied",
     "founding.lead1": "Eine unabhängige Community für Zeekr-Enthusiasten. Egal ob du über den Kauf deines ersten Zeekr nachdenkst oder bereits einen fährst – auf Zeekrclub.de sorgen wir für die besten Deals, Vorteile und Rabatte, damit dein Zeekr-Leben so gut wie möglich wird.",
@@ -84,6 +91,7 @@ const translations = {
     "footer.datenschutz": "Datenschutz",
     "footer.kontakt": "Kontakt",
     "footer.founding": "Gründungsmitglieder",
+    "footer.membership": "Mitgliedschaft",
     "cookie.text": "Diese Seite nutzt nur technisch notwendige lokale Speicherung (z. B. für deine Sprachauswahl) – keine Tracking-Cookies.",
     "cookie.more": "Mehr erfahren",
     "cookie.ok": "Alles klar",
@@ -178,7 +186,14 @@ const translations = {
     "final.form.model": "Which Zeekr model do you drive or have your eye on? (optional)",
     "final.form.modelPlaceholder": "e.g. Zeekr 7X",
     "final.form.submit": "Become a member",
-    "final.afterSubmit": "After submitting, you'll be forwarded straight to our Discord.",
+    "hero.learnMore": "Learn more about membership →",
+    "wizard.back": "Back",
+    "wizard.next": "Next",
+    "wizard.stepPrefix": "Step",
+    "wizard.stepOf": "of",
+    "wizard.success": "Thanks! We're forwarding you to our Discord now.",
+    "membership.title": "Membership",
+    "membership.sub": "Everything you need to know about membership.",
     "founding.eyebrow": "🚀 Become one of our first 100 Founding Members!",
     "founding.heading": "Become a Founding Member",
     "founding.lead1": "An independent community for Zeekr enthusiasts. Whether you're considering buying your first Zeekr or already driving one – on Zeekrclub.de we create the best deals, perks, and discounts to make your Zeekr life as good as it can be.",
@@ -200,6 +215,7 @@ const translations = {
     "footer.datenschutz": "Privacy policy",
     "footer.kontakt": "Contact",
     "footer.founding": "Founding Members",
+    "footer.membership": "Membership",
     "cookie.text": "This site only uses technically necessary local storage (e.g. for your language choice) – no tracking cookies.",
     "cookie.more": "Learn more",
     "cookie.ok": "Got it",
@@ -435,17 +451,79 @@ if (loginLoggedIn && loginLoggedOut) {
     });
 }
 
-// ---------- Leadformulär på startsidan (öppnar besökarens e-postprogram) ----------
-const leadForm = document.getElementById("lead-form");
+// ---------- Hero-stegformulär på startsidan ----------
+(function setupHeroWizard() {
+  const intro = document.getElementById("hero-intro");
+  const wizard = document.getElementById("hero-wizard");
+  const success = document.getElementById("hero-success");
+  const startBtn = document.getElementById("hero-start-btn");
+  if (!intro || !wizard || !success || !startBtn) return;
 
-if (leadForm) {
-  leadForm.addEventListener("submit", (event) => {
+  const steps = Array.from(wizard.querySelectorAll(".hero-wizard-step"));
+  const progressEl = document.getElementById("hero-wizard-progress");
+  const backBtn = document.getElementById("hero-wizard-back");
+  const nextBtn = document.getElementById("hero-wizard-next");
+  const submitBtn = document.getElementById("hero-wizard-submit");
+  const totalSteps = steps.length;
+  let currentStep = 1;
+
+  function updateProgress() {
+    const dict = translations[getSavedLang() || DEFAULT_LANG] || translations[DEFAULT_LANG];
+    progressEl.textContent =
+      dict["wizard.stepPrefix"] + " " + currentStep + " " + dict["wizard.stepOf"] + " " + totalSteps;
+  }
+
+  function showStep(n) {
+    steps.forEach((step) => {
+      step.hidden = Number(step.getAttribute("data-step")) !== n;
+    });
+    backBtn.hidden = n === 1;
+    nextBtn.hidden = n === totalSteps;
+    submitBtn.hidden = n !== totalSteps;
+    updateProgress();
+  }
+
+  function startWizard() {
+    intro.hidden = true;
+    success.hidden = true;
+    wizard.hidden = false;
+    currentStep = 1;
+    showStep(currentStep);
+  }
+
+  startBtn.addEventListener("click", startWizard);
+
+  // Andra länkar som pekar på #anmelden (header-knappen, mitgliedschaft.html) startar formuläret direkt
+  document.querySelectorAll('a[href="#anmelden"], a[href$="#anmelden"]').forEach((link) => {
+    link.addEventListener("click", startWizard);
+  });
+
+  nextBtn.addEventListener("click", () => {
+    const currentInput = steps[currentStep - 1].querySelector("input");
+    if (currentInput && !currentInput.reportValidity()) return;
+    if (currentStep < totalSteps) {
+      currentStep++;
+      showStep(currentStep);
+    }
+  });
+
+  backBtn.addEventListener("click", () => {
+    if (currentStep > 1) {
+      currentStep--;
+      showStep(currentStep);
+    }
+  });
+
+  wizard.addEventListener("submit", (event) => {
     event.preventDefault();
 
-    const name = leadForm.name.value.trim();
-    const email = leadForm.email.value.trim();
-    const zip = leadForm.zip.value.trim();
-    const model = leadForm.model.value.trim();
+    const currentInput = steps[currentStep - 1].querySelector("input");
+    if (currentInput && !currentInput.reportValidity()) return;
+
+    const name = wizard.name.value.trim();
+    const email = wizard.email.value.trim();
+    const zip = wizard.zip.value.trim();
+    const model = wizard.model.value.trim();
 
     const subject = encodeURIComponent("Neues Mitglied – Zeekr Club");
     const bodyLines = ["Name: " + name, "E-Mail: " + email, "PLZ: " + zip];
@@ -456,8 +534,22 @@ if (leadForm) {
     // så besökaren faktiskt kommer in i communityn efter att ha lämnat sina uppgifter.
     window.open("https://discord.gg/8UYRfZAgHB", "_blank", "noopener,noreferrer");
     window.location.href = "mailto:nygdavid@gmail.com?subject=" + subject + "&body=" + body;
+
+    wizard.hidden = true;
+    success.hidden = false;
   });
-}
+
+  document.querySelectorAll(".lang-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      if (!wizard.hidden) updateProgress();
+    });
+  });
+
+  // Kommer besökaren direkt från en "Jetzt Mitglied werden"-länk (t.ex. mitgliedschaft.html) startas formuläret direkt
+  if (window.location.hash === "#anmelden") {
+    startWizard();
+  }
+})();
 
 // Gör så att klick på nav-länkar scrollar mjukt till rätt sektion
 document.querySelectorAll('a[href^="#"]').forEach((link) => {
