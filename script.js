@@ -64,6 +64,10 @@ const translations = {
     "final.form.submit": "Jetzt Mitglied werden",
     "hero.learnMore": "Mehr über die Mitgliedschaft erfahren →",
     "wizard.back": "Zurück",
+    "wizard.goToStep1": "Zu Schritt 1 springen",
+    "wizard.goToStep2": "Zu Schritt 2 springen",
+    "wizard.goToStep3": "Zu Schritt 3 springen",
+    "wizard.goToStep4": "Zu Schritt 4 springen",
     "wizard.next": "Weiter",
     "wizard.stepPrefix": "Schritt",
     "wizard.stepOf": "von",
@@ -188,6 +192,10 @@ const translations = {
     "final.form.submit": "Become a member",
     "hero.learnMore": "Learn more about membership →",
     "wizard.back": "Back",
+    "wizard.goToStep1": "Jump to step 1",
+    "wizard.goToStep2": "Jump to step 2",
+    "wizard.goToStep3": "Jump to step 3",
+    "wizard.goToStep4": "Jump to step 4",
     "wizard.next": "Next",
     "wizard.stepPrefix": "Step",
     "wizard.stepOf": "of",
@@ -463,6 +471,7 @@ if (loginLoggedIn && loginLoggedOut) {
   const backBtn = document.getElementById("hero-wizard-back");
   const nextBtn = document.getElementById("hero-wizard-next");
   const submitBtn = document.getElementById("hero-wizard-submit");
+  const dots = Array.from(document.querySelectorAll(".hero-wizard-dot"));
   const totalSteps = steps.length;
   let currentStep = 1;
 
@@ -470,6 +479,15 @@ if (loginLoggedIn && loginLoggedOut) {
     const dict = translations[getSavedLang() || DEFAULT_LANG] || translations[DEFAULT_LANG];
     progressEl.textContent =
       dict["wizard.stepPrefix"] + " " + currentStep + " " + dict["wizard.stepOf"] + " " + totalSteps;
+  }
+
+  function updateDots() {
+    dots.forEach((dot) => {
+      const dotStep = Number(dot.getAttribute("data-step"));
+      dot.classList.toggle("current", dotStep === currentStep);
+      dot.classList.toggle("completed", dotStep < currentStep);
+      dot.disabled = dotStep >= currentStep;
+    });
   }
 
   function showStep(n) {
@@ -482,7 +500,19 @@ if (loginLoggedIn && loginLoggedOut) {
     nextBtn.hidden = n === totalSteps;
     submitBtn.hidden = n !== totalSteps;
     updateProgress();
+    updateDots();
   }
+
+  // Prickar: klick på ett redan ifyllt steg hoppar tillbaka dit direkt
+  dots.forEach((dot) => {
+    dot.addEventListener("click", () => {
+      const targetStep = Number(dot.getAttribute("data-step"));
+      if (targetStep < currentStep) {
+        currentStep = targetStep;
+        showStep(currentStep);
+      }
+    });
+  });
 
   nextBtn.addEventListener("click", () => {
     const currentInput = steps[currentStep - 1].querySelector("input");

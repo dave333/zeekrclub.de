@@ -70,9 +70,16 @@
         </div>
 
         <div class="hero-wizard-nav">
-          <button type="button" class="btn btn-nav" id="hero-wizard-back" data-i18n="wizard.back" hidden>Zurück</button>
-          <button type="button" class="btn btn-primary" id="hero-wizard-next" data-i18n="wizard.next">Weiter</button>
+          <button type="button" class="hero-wizard-arrow" id="hero-wizard-back" data-i18n-aria="wizard.back" aria-label="Zurück" hidden>‹</button>
+          <button type="button" class="btn btn-primary hero-wizard-forward" id="hero-wizard-next" data-i18n="wizard.next">Weiter</button>
           <button type="submit" class="btn btn-primary" id="hero-wizard-submit" data-i18n="final.form.submit" hidden>Jetzt Mitglied werden</button>
+        </div>
+
+        <div class="hero-wizard-dots" id="hero-wizard-dots">
+          <button type="button" class="hero-wizard-dot" data-step="1" data-i18n-aria="wizard.goToStep1" aria-label="Schritt 1"></button>
+          <button type="button" class="hero-wizard-dot" data-step="2" data-i18n-aria="wizard.goToStep2" aria-label="Schritt 2"></button>
+          <button type="button" class="hero-wizard-dot" data-step="3" data-i18n-aria="wizard.goToStep3" aria-label="Schritt 3"></button>
+          <button type="button" class="hero-wizard-dot" data-step="4" data-i18n-aria="wizard.goToStep4" aria-label="Schritt 4"></button>
         </div>
       </form>
 
