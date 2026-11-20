@@ -786,6 +786,30 @@ html {
   color: var(--gold);
 }
 
+.login-error {
+  color: #e26b6b;
+  font-size: 0.9rem;
+  margin-top: 0.75rem;
+  margin-bottom: 0;
+}
+
+.login-switch {
+  margin-top: 1.25rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.login-switch-link {
+  background: none;
+  border: none;
+  color: var(--gold);
+  font: inherit;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 0.35rem;
+  text-decoration: underline;
+}
+
 /* ---------- Gründungsmitglieder-sida ---------- */
 .founding-page {
   max-width: 720px;

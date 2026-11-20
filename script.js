@@ -4,11 +4,26 @@ const translations = {
   de: {
     "menu.toggle": "Menü öffnen",
     "login.title": "Mitgliederbereich",
-    "login.text": "Hier entsteht bald ein Mitgliederbereich mit exklusiven Dokumenten und Guides. Melde dich mit deinem Discord-Konto an, das du bereits vom Forum kennst.",
+    "login.text": "Hier entsteht bald ein Mitgliederbereich mit exklusiven Dokumenten und Guides. Melde dich an oder erstelle kostenlos ein Konto.",
     "login.welcomePrefix": "Angemeldet als",
-    "login.welcomeSuffix": "über Discord.",
-    "login.cta": "Mit Discord anmelden",
     "login.logout": "Abmelden",
+    "login.nameLabel": "Name",
+    "login.namePlaceholder": "Max Mustermann",
+    "login.emailLabel": "E-Mail",
+    "login.emailPlaceholder": "max@beispiel.de",
+    "login.passwordLabel": "Passwort",
+    "login.passwordPlaceholder": "Mind. 8 Zeichen",
+    "login.loginSubmit": "Anmelden",
+    "login.registerSubmit": "Konto erstellen",
+    "login.switchToRegisterPrompt": "Noch kein Konto?",
+    "login.switchToRegisterLink": "Jetzt registrieren",
+    "login.switchToLoginPrompt": "Schon ein Konto?",
+    "login.switchToLoginLink": "Jetzt anmelden",
+    "login.error.invalid_input": "Bitte alle Felder korrekt ausfüllen (Passwort mind. 8 Zeichen).",
+    "login.error.invalid_credentials": "E-Mail oder Passwort ist falsch.",
+    "login.error.email_taken": "Diese E-Mail-Adresse ist bereits registriert.",
+    "login.error.too_many_attempts": "Zu viele Versuche. Bitte warte ein paar Minuten.",
+    "login.error.generic": "Etwas ist schiefgelaufen. Bitte versuche es erneut.",
     "hero.eyebrow": "ZEEKR CLUB DEUTSCHLAND",
     "hero.audience.owners": "Für Besitzer",
     "hero.audience.interested": "Für Interessierte",
@@ -132,11 +147,26 @@ const translations = {
   en: {
     "menu.toggle": "Open menu",
     "login.title": "Members area",
-    "login.text": "A members area with exclusive documents and guides is coming soon. Log in with the Discord account you already use for the forum.",
+    "login.text": "A members area with exclusive documents and guides is coming soon. Log in or create a free account.",
     "login.welcomePrefix": "Signed in as",
-    "login.welcomeSuffix": "via Discord.",
-    "login.cta": "Log in with Discord",
     "login.logout": "Log out",
+    "login.nameLabel": "Name",
+    "login.namePlaceholder": "Jane Doe",
+    "login.emailLabel": "Email",
+    "login.emailPlaceholder": "jane@example.com",
+    "login.passwordLabel": "Password",
+    "login.passwordPlaceholder": "At least 8 characters",
+    "login.loginSubmit": "Log in",
+    "login.registerSubmit": "Create account",
+    "login.switchToRegisterPrompt": "No account yet?",
+    "login.switchToRegisterLink": "Create one now",
+    "login.switchToLoginPrompt": "Already have an account?",
+    "login.switchToLoginLink": "Log in instead",
+    "login.error.invalid_input": "Please fill in all fields correctly (password must be at least 8 characters).",
+    "login.error.invalid_credentials": "Email or password is incorrect.",
+    "login.error.email_taken": "This email address is already registered.",
+    "login.error.too_many_attempts": "Too many attempts. Please wait a few minutes.",
+    "login.error.generic": "Something went wrong. Please try again.",
     "hero.eyebrow": "ZEEKR CLUB GERMANY",
     "hero.audience.owners": "For owners",
     "hero.audience.interested": "For those interested",
@@ -425,7 +455,7 @@ if (headerLoginLinks.length > 0) {
     .then((data) => {
       if (data.loggedIn) {
         headerLoginLinks.forEach((link) => {
-          link.textContent = data.username;
+          link.textContent = data.name;
           link.removeAttribute("data-i18n");
         });
       }
@@ -435,7 +465,7 @@ if (headerLoginLinks.length > 0) {
     });
 }
 
-// ---------- Inloggningsstatus (login.html) ----------
+// ---------- Inloggningsstatus + formulär (login.html) ----------
 const loginLoggedIn = document.getElementById("login-logged-in");
 const loginLoggedOut = document.getElementById("login-logged-out");
 
@@ -444,12 +474,7 @@ if (loginLoggedIn && loginLoggedOut) {
     .then((res) => res.json())
     .then((data) => {
       if (data.loggedIn) {
-        document.getElementById("login-username").textContent = data.username;
-        if (data.avatar) {
-          const avatarEl = document.getElementById("login-avatar");
-          avatarEl.src = data.avatar;
-          avatarEl.hidden = false;
-        }
+        document.getElementById("login-username").textContent = data.name;
         loginLoggedIn.hidden = false;
         loginLoggedOut.hidden = true;
       }
@@ -458,6 +483,82 @@ if (loginLoggedIn && loginLoggedOut) {
       // Backend inte nåbar – visa standardläget (utloggad)
     });
 }
+
+// ---------- Login- / registreringsformulär (login.html) ----------
+(function setupLoginForm() {
+  const form = document.getElementById("login-form");
+  if (!form) return;
+
+  const nameField = document.getElementById("login-name-field");
+  const nameInput = document.getElementById("auth-name");
+  const errorEl = document.getElementById("login-error");
+  const submitBtn = document.getElementById("login-submit");
+  const switchBtn = document.getElementById("login-switch-btn");
+  const switchText = document.getElementById("login-switch-text");
+
+  let mode = "login"; // "login" eller "register"
+
+  function dict() {
+    return translations[getSavedLang() || DEFAULT_LANG] || translations[DEFAULT_LANG];
+  }
+
+  function updateMode() {
+    const d = dict();
+    nameField.hidden = mode === "login";
+    nameInput.required = mode === "register";
+    submitBtn.textContent = mode === "login" ? d["login.loginSubmit"] : d["login.registerSubmit"];
+    switchText.textContent = mode === "login" ? d["login.switchToRegisterPrompt"] : d["login.switchToLoginPrompt"];
+    switchBtn.textContent = mode === "login" ? d["login.switchToRegisterLink"] : d["login.switchToLoginLink"];
+    errorEl.hidden = true;
+  }
+
+  switchBtn.addEventListener("click", () => {
+    mode = mode === "login" ? "register" : "login";
+    updateMode();
+  });
+
+  document.querySelectorAll(".lang-btn").forEach((btn) => {
+    btn.addEventListener("click", updateMode);
+  });
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    errorEl.hidden = true;
+
+    const email = form.email.value.trim();
+    const password = form.password.value;
+    const payload = { email, password };
+    if (mode === "register") payload.name = nameInput.value.trim();
+
+    const endpoint = mode === "login" ? "/auth/login" : "/auth/register";
+
+    submitBtn.disabled = true;
+    fetch(endpoint, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "same-origin",
+      body: JSON.stringify(payload),
+    })
+      .then((res) => res.json().then((data) => ({ ok: res.ok, data })))
+      .then(({ ok, data }) => {
+        if (ok && data.ok) {
+          window.location.reload();
+          return;
+        }
+        const d = dict();
+        errorEl.textContent = d["login.error." + data.error] || d["login.error.generic"];
+        errorEl.hidden = false;
+        submitBtn.disabled = false;
+      })
+      .catch(() => {
+        errorEl.textContent = dict()["login.error.generic"];
+        errorEl.hidden = false;
+        submitBtn.disabled = false;
+      });
+  });
+
+  updateMode();
+})();
 
 // ---------- Hero-stegformulär på startsidan ----------
 (function setupHeroWizard() {
