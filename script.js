@@ -528,7 +528,10 @@ if (loginLoggedIn && loginLoggedOut) {
     const email = form.email.value.trim();
     const password = form.password.value;
     const payload = { email, password };
-    if (mode === "register") payload.name = nameInput.value.trim();
+    if (mode === "register") {
+      payload.name = nameInput.value.trim();
+      payload.lang = getSavedLang() || DEFAULT_LANG;
+    }
 
     const endpoint = mode === "login" ? "/auth/login" : "/auth/register";
 
